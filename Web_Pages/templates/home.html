@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+
+{% load static %}
+     
+{% block content %}
+  
+        <!-- Hero Section Start -->
+        <div class="hero-wrap hero-two">
+            <img src="{% static 'assets/img/hero/hero-shape-9.webp' %}" alt="Image" class="hero-shape-one bounce">
+            <img src="{% static 'assets/img/hero/hero-shape-9.webp' %}" alt="Image" class="hero-shape-two ">
+            <img src="{% static 'assets/img/hero/hero-shape-11.webp' %}" alt="Image" class="hero-shape-three">
+            <img src="{% static 'assets/img/hero/hero-shape-11.webp' %}" alt="Image" class="hero-shape-four">
+            <img src="{% static 'assets/img/hero/hero-shape-12.webp' %}" alt="Image" class="hero-shape-five">
+            <img src="{% static 'assets/img/hero/hero-shape-10.webp' %}" alt="Image" class="hero-shape-six moveHorizontal">
+            <img src="{% static 'assets/img/hero/hero-logo-4.webp' %}" alt="Image" class="hero-logo-one animationFramesTwo">
+            <img src="{% static 'assets/img/hero/hero-logo-5.webp' %}" alt="Image" class="hero-logo-two bounce">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-6">
+                        <div class="hero-content">
+                            <span data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">Find The Right Car For You</span>
+                            <h1 data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">Find Your Next Car With TrueValue</h1>
+                            <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod ste dolore magnam aliquam quaerat demi text voluptatem dolore amet magna aliqua.</p>
+                            <div class="hero-btn">
+                                <a href="{% url 'all_cars' %}" class="btn-two" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="500">Get Started</a>
+                                <a href="{% url 'about' %}" class="btn-three" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="600">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-6">
+                        <div class="hero-img-wrap">
+                            <img src="{% static 'assets/img/hero/hero-img-4.webp' %}" alt="Image" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                            <span>Classic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Section End -->
+
+        <!-- Filter Product Section Start -->
+        <div class="container" >
+            <form action="#" class="filter-product-two" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="car_make">Car Make</label>
+                            <select name="car_make" id="car_make">
+                                <option value="0">Select Car Make</option>
+                                <option value="1">Audi</option>
+                                <option value="2">BMW</option>
+                                <option value="3">Voxwagon</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="car_model">Car Model</label>
+                            <select name="car_model" id="car_model">
+                                <option value="0">Select Car Model</option>
+                                <option value="1">N Series</option>
+                                <option value="2">S Series</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="car_year">Select Year</label>
+                            <select name="car_year" id="car_year">
+                                <option value="0">Select Car Year</option>
+                                <option value="1">2022</option>
+                                <option value="2">2021</option>
+                                <option value="3">2020</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="car_condition">Car Condition</label>
+                            <select name="car_condition" id="car_condition">
+                                <option value="0">Select Car Condition</option>
+                                <option value="1">New</option>
+                                <option value="2">Refubrished</option>
+                                <option value="3">Resale</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="car_offer">Offer Type</label>
+                            <select name="car_offer" id="car_offer">
+                                <option value="0">Select Offer Type</option>
+                                <option value="1">Discount Offer</option>
+                                <option value="2">Promotional Offer</option>
+                                <option value="3">Rental Offer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="car_price">Select Price</label>
+                            <select name="car_price" id="car_price">
+                                <option value="0">Select Price</option>
+                                <option value="1">$1000 - $5000</option>
+                                <option value="1">$5000 - $10000</option>
+                                <option value="1">$10000 - $20000</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <label for="car_milieage">Select Max Milieage</label>
+                            <select name="car_milieage" id="car_milieage">
+                                <option value="0">Select Max Milieage</option>
+                                <option value="1">2000 Miles</option>
+                                <option value="1">3000 Miles</option>
+                                <option value="1">4000 Miles</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="form-group">
+                            <button type="submit" class="btn-two d-block w-100">Search Now</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Filter Product Section End -->
+
+        <!-- Category Section Start -->
+        <div class="category-wrap ptb-100">
+            <div class="container">
+                <div class="section-title-two text-center mb-30">
+                    <span>Category</span>
+                    <h2>Find The Best Car For You</h2>
+                </div>
+                <div class="category-slider-two owl-carousel">
+                {% for i in category %}
+                    <div class="category-card-two">
+                        <div class="cat-img">
+                            <img src="{{i.category_image.url}}" alt="Image" style="min-height: 100px; max-height: 200px;">
+                        </div>
+                        <h3><a href="{% url 'cars' car_name=i.category_name %}">{{i.category_name}}</a></h3>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Category Section End -->
+
+        <!-- Product Section Start -->
+        <div class="product-wrap pt-100 pb-70 bg_ash">
+            <div class="container">
+                <div class="section-title-two text-center mb-40">
+                    <span>Popular Listings</span>
+                    <h2>View Top Featured Listings</h2>
+                </div>
+                <div class="row justify-content-center">
+                {% for i in featured %}
+                    <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="200">
+                        <div class="product-card-two">
+                            <div class="product-img">
+                                <img src="{{i.car_photo.url}}" alt="Image">
+                                 <ul class="product-option list-style">
+                                    <li><a href="wishlist.html"><i class="flaticon-heart"></i></a></li>
+                                    <li><a href="compare-2.html"><i class="flaticon-compare"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="product-info">
+                                <a href="listings.html" class="product-category">{{i.body_style}}</a>
+                                <h3><a href="{% url 'car_detail' i.id %}">{{i.car_name}}</a></h3>
+                                <div class="product-price">Price: ₹ {{i.price}}</div>
+                                <ul class="product-amenity list-style">
+                                    <li>Transmission <span>{{i.transmission}}</span></li>
+                                    <li>Fuel Type <span>{{i.fuel_type}}</span></li>
+                                    <li>Mileage<span>{{i.milage}} (Km/l)</span></li>
+                                </ul>
+                                <div class="product-ratings">
+                                    <ul class="list-style">
+                                        <li><i class="ri-star-fill"></i></li>
+                                        <li><i class="ri-star-fill"></i></li>
+                                        <li><i class="ri-star-fill"></i></li>
+                                        <li><i class="ri-star-fill"></i></li>
+                                        <li><i class="ri-star-fill"></i></li>
+                                    </ul>
+                                    <span>(4k+ Ratings)</span>
+                                </div>
+                                <a href="{% url 'car_detail' i.id %}" class="btn-one">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Product Section End -->
+
+        <!-- Call To Action Section Start -->
+        <div class="cta-wrap ptb-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-8 col-lg-7 col-md-7">
+                        <div class="cta-content">
+                            <div class="section-title-two">
+                                <h2 class="text-white">Gift Your Family A <span>Trusted</span> New Car!</h2>
+                                <p  class="text-white">Lorem ipsum dolor amet consectetur adipisicing elit sed do eiusmod cste dolore magnam aliquam quaerat demi text voluptatem dolore amet magna aliqua magna elit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-5 col-md-5 text-md-end">
+                        <a href="{% url 'contact' %}" class="btn-two">Contact Us Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Call To Action Section End -->
+
+
+        <!-- Testimonial Section Start -->
+        <div class="testimonial-wrap-two bg-f ptb-100">
+            <div class="container">
+                <div class="section-title-two text-center mb-30">
+                    <span>Testimonials</span>
+                    <h2 class="text-white">What Our Customer Say</h2>
+                </div>
+                <div class="testimonial-slider-two owl-carousel">
+                    <div class="testimonial-card-two">
+                        <div class="client-info-wrap">
+                            <div class="client-img">
+                                <img src="{% static 'assets/img/clients/client-4.webp' %}" alt="Image">
+                            </div>
+                            <div class="client-info">
+                                <h3>George Brown</h3>
+                                <span>Customer Advisor</span>
+                            </div>
+                            <div class="quote-icon">
+                                <i class="flaticon-quote"></i>
+                            </div>
+                        </div>
+                        <p class="client-quote">“It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout he point of using Lorem Ipsum is that it has a moreor less normal distribution of letters as opposed to using content here content here making it look like readable english many desktop publishing dolore.”</p>
+                        <ul class="ratings list-style">
+                            <li><i class="ri-star-fill"></i></li>
+                            <li><i class="ri-star-fill"></i></li>
+                            <li><i class="ri-star-fill"></i></li>
+                            <li><i class="ri-star-fill"></i></li>
+                            <li><i class="ri-star-fill"></i></li>
+                        </ul>
+                    </div>
+                    <div class="testimonial-card-two">
+                        <div class="client-info-area">
+                            <div class="client-info-wrap">
+                                <div class="client-img">
+                                    <img src="{% static 'assets/img/clients/client-6.webp' %}" alt="Image">
+                                </div>
+                                <div class="client-info">
+                                    <h3>Miranda Halim</h3>
+                                    <span>General Manager</span>
+                                </div>
+                                <div class="quote-icon">
+                                    <i class="flaticon-quote"></i>
+                                </div>
+                            </div>
+                            <p class="client-quote">“It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout he point of using Lorem Ipsum is that it has a moreor less normal distribution of letters as opposed to using content here content here making it look like readable english many desktop publishing dolore.”</p>
+                            <ul class="ratings list-style">
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="testimonial-card-two">
+                        <div class="client-info-area">
+                            <div class="client-info-wrap">
+                                <div class="client-img">
+                                    <img src="{% static 'assets/img/clients/client-1.webp' %}" alt="Image">
+                                </div>
+                                <div class="client-info">
+                                    <h3>Kate Stewart</h3>
+                                    <span>Happy Customer</span>
+                                </div>
+                                <div class="quote-icon">
+                                    <i class="flaticon-quote"></i>
+                                </div>
+                            </div>
+                            <p class="client-quote">“It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout he point of using Lorem Ipsum is that it has a moreor less normal distribution of letters as opposed to using content here content here making it look like readable english many desktop publishing dolore.”</p>
+                            <ul class="ratings list-style">
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="testimonial-card-two">
+                        <div class="client-info-area">
+                            <div class="client-info-wrap">
+                                <div class="client-img">
+                                    <img src="{% static 'assets/img/clients/client-5.webp' %}" alt="Image">
+                                </div>
+                                <div class="client-info">
+                                    <h3>Kilian Anderson</h3>
+                                    <span>Web Designer</span>
+                                </div>
+                                <div class="quote-icon">
+                                    <i class="flaticon-quote"></i>
+                                </div>
+                            </div>
+                            <p class="client-quote">“It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout he point of using Lorem Ipsum is that it has a moreor less normal distribution of letters as opposed to using content here content here making it look like readable english many desktop publishing dolore.”</p>
+                            <ul class="ratings list-style">
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                                <li><i class="ri-star-fill"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial Section End -->
+
+
+        {% endblock content %}

@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Breadcrumb Start -->
+<div class="breadcrumb-wrap br-15 bg-f">
+    <div class="container">
+        <div class="breadcrumb-title">
+            <h2>Car Listings</h2>
+            <ul class="breadcrumb-menu list-style">
+                <li><a href="{% url 'home' %}">Home </a></li>
+                <li>Listings</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Blog Details Section Start -->
+<div class="blog-details-wrap ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-3 col-xl-4 col-lg-4 order-xl-1 order-lg-1 order-md-2 order-2">
+                <div class="sidebar-two">
+                    <div class="sidebar-widget-one">
+                        <h3 class="sidebar-widget-one-title">Find Your Dream Car</h3>
+                       <form action="#" class="filter-search">
+                            <div class="form-group">
+                                <select>
+                                    <option value="0">Select Brand</option>
+                                    <option value="1">Audi</option>
+                                    <option value="2">BMW</option>
+                                    <option value="3">Voxwagon</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select >
+                                    <option value="0">Select Year Of Model</option>
+                                    <option value="1">2022</option>
+                                    <option value="2">2021</option>
+                                    <option value="3">2020</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="car_model" id="car_model">
+                                    <option value="0">Vehicle Fuel Type</option>
+                                    <option value="1">Diesel</option>
+                                    <option value="2">Electric</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select>
+                                    <option value="0">Type of Car</option>
+                                    <option value="1">New</option>
+                                    <option value="2">Refubrished</option>
+                                    <option value="3">Resale</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select>
+                                    <option value="0">Location</option>
+                                    <option value="1">USA</option>
+                                    <option value="2">Canada</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select>
+                                    <option value="0">Select Max Milieage</option>
+                                    <option value="1">2000 Miles</option>
+                                    <option value="2">3000 Miles</option>
+                                    <option value="3">4000 Miles</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select>
+                                    <option value="0">Seat Capacity</option>
+                                    <option value="1">4 Seat</option>
+                                    <option value="2">5 Seat</option>
+                                    <option value="3">6 Seat</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select >
+                                    <option value="0">Transmission Type</option>
+                                    <option value="1">Auto</option>
+                                    <option value="2">Manual</option>
+                                    <option value="3">Semi-auto</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select >
+                                    <option value="0">Engine Capacity Type</option>
+                                    <option value="1">Auto</option>
+                                    <option value="2">Manual</option>
+                                    <option value="3">Semi-auto</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select >
+                                    <option value="0">New Or Used</option>
+                                    <option value="1">New</option>
+                                    <option value="2">Used</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-two d-block w-100">Search Car</button>
+                       </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xxl-9 col-xl-8 col-lg-8 order-xl-2 order-lg-1 order-md-1 order-1">
+                <div class="search-result-wrap">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 col-md-7">
+                            <p>Showing 1-13 of 23 Results</p>
+                        </div>
+                        <div class="col-lg-4 col-md-5">
+                            <select >
+                                <option value="1">Sort By Price: Low To High</option>
+                                <option value="2">Sort By Price: High To Low</option>
+                                <option value="3">Sort By Ratings: High To Low</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                {% for i in car %}
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6">
+                        <div class="product-card-two">
+                            <div class="product-img">
+                                <img src="{{i.car_photo.url}}" alt="Image">
+                                    <ul class="product-option list-style">
+                                    <li><a href="wishlist.html"><i class="flaticon-heart"></i></a></li>
+                                    <li><a href="compare-2.html"><i class="flaticon-compare"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="product-info">
+                                <a href="listings.html" class="product-category">{{i.body_style}}</a>
+                                <h3><a href="{% url 'car_detail' i.id %}">{{i.car_name}}</a></h3>
+                                <div class="product-price">Price: ₹ {{i.price}}</div>
+                                <ul class="product-amenity list-style">
+                                    <li>Transmission <span>{{i.transmission}}</span></li>
+                                    <li>Fuel Type <span>{{i.fuel_type}}</span></li>
+                                    <li>Mileage<span>{{i.milage}} (Km/l)</span></li>
+                                </ul>
+                                <div class="product-ratings">
+                                    <ul class="list-style">
+                                        <li><i class="ri-star-fill"></i></li>
+                                        <li><i class="ri-star-fill"></i></li>
+                                        <li><i class="ri-star-fill"></i></li>
+                                        <li><i class="ri-star-fill"></i></li>
+                                        <li><i class="ri-star-fill"></i></li>
+                                    </ul>
+                                    <span>(4k+ Ratings)</span>
+                                </div>
+                                <a href="{% url 'car_detail' i.id %}" class="btn-one">View Details</a>
+                                </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+                <ul class="page-nav list-style">
+                {% if car.has_other_pages %}
+                    <li><a href="listings.html"><i class="flaticon-left-arrow"></i></a></li>
+                    <li><a class="active" href="listings.html">1</a></li>
+                    <li><a href="listings.html">2</a></li>
+                    <li><a href="listings.html">3</a></li>
+                    <li><a href="listings.html"><i class="flaticon-next"></i></a></li>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Listing Section End -->
+  
+{% endblock content %}
