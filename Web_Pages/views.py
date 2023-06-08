@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from Admin_app.models import Category_Db, Car_Db
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
 # Create your views here.
@@ -23,11 +22,8 @@ def cars(request, car_name):
 
 def all_cars(request):
     car = Car_Db.objects.all()
-    paginator_obj = Paginator(car, 3)
-    page = request.GET.get('page')
-    paged_cars = paginator_obj.get_page(page)
     context = {
-        "car": paged_cars,
+        "car": car,
     }
     return render(request, 'cars.html', context)
 
@@ -46,3 +42,4 @@ def services(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
