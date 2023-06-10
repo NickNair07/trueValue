@@ -1,0 +1,41 @@
+{% extends 'mainpage.html' %}
+{% block content %}
+
+    <div style="margin:30px;" class="col-xl">
+
+        <div class="card mb-4">
+
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">EDIT CATEGORY</h5>
+              <small class="text-muted float-end">Default label</small>
+            </div>
+
+            <div class="card-body">
+              <form method="post" action="{% url 'edit_category' data.id %}" enctype="multipart/form-data" >
+                  {% csrf_token %}
+                <div class="mb-3">
+                  <label class="form-label" for="basic-default-fullname">Category Name</label>
+                  <input type="text" class="form-control" id="basic-default-fullname" placeholder="category name" name="category_name" value="{{data.category_name}}">
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Default file input example</label>
+                    <input class="form-control" type="file" id="formFile" name="category_image" onchange="viewImage(event)">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <img id="imgView" src="{{data.category_image.url}}" alt="image" class="img-thumbnail" width="200px" height="150px">
+                </div>
+                <button class="btn btn-primary btn-lg" type="submit">Update</button>
+<!--                <button type="submit" class="btn btn-primary">Update</button>-->
+              </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- instant image view when edit car or category -->
+    <script>
+        function viewImage(event){
+            document.getElementById('imgView').src= URL.createObjectURL(event.target.files[0])
+        }
+    </script>
+
+{% endblock %}

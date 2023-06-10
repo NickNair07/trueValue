@@ -144,7 +144,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="index.html" class="menu-link">
+              <a href="{% url 'main_page' %}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -155,25 +155,48 @@
               <span class="menu-header-text">Pages</span>
             </li>
 
+            <!-- Category section starts -->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">ITEMS</div>
+                <div data-i18n="Account Settings">CATEGORY</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Account">CATEGORY</div>
+                  <a href="{% url 'add_category' %}" class="menu-link">
+                    <div data-i18n="Account">Add Category</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="" class="menu-link">
-                    <div data-i18n="Notifications">PRODUCTS</div>
+                  <a href="{% url 'display_category' %}" class="menu-link">
+                    <div data-i18n="Notifications">Display Category</div>
                   </a>
                 </li>
 
               </ul>
             </li>
+            <!-- Category section ends -->
+
+            <!-- Cars section starts -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">CARS</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="{% url 'add_car' %}" class="menu-link">
+                    <div data-i18n="Account">Add Car</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="{% url 'display_car' %}" class="menu-link">
+                    <div data-i18n="Notifications">Display Car</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- Cars section ends -->
 
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -476,7 +499,11 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
+                    {% if request.session.username %}
+                      <img src="{% static 'assets/img/avatars/8.jpeg' %}" alt class="w-px-40 h-auto rounded-circle" />
+                    {% else %}
                       <img src="{% static 'assets/img/avatars/1.png' %}" alt class="w-px-40 h-auto rounded-circle" />
+                    {% endif %}
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -485,7 +512,11 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
+                            {% if request.session.username %}
+                              <img src="{% static 'assets/img/avatars/8.jpeg' %}" alt class="w-px-40 h-auto rounded-circle" />
+                            {% else %}
                               <img src="{% static 'assets/img/avatars/1.png' %}" alt class="w-px-40 h-auto rounded-circle" />
+                            {% endif %}
                             </div>
                           </div>
                           <div class="flex-grow-1">
@@ -525,7 +556,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="">
+                      <a class="dropdown-item" href="{% url 'admin_logout' %}">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
@@ -1124,27 +1155,79 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+
     <!-- sweet alert messages -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+        <!-- sweetalert js -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  {% if messages %}
-        {% for i in messages %}
-            {% if i.tags == 'warning' %}
-                <script>
-                      swal('{{i}}','','warning');
-                </script>
-            {% elif i.tags == 'error' %}
-                <script>
-                      swal('{{i}}','','error');
-                </script>
-            {% else%}
-                <script>
-                      swal('{{i}}','','success');
-                </script>
-            {% endif %}
-          {% endfor %}
-      {% endif %}
+        <script>
+            var m = "{{ message }}";
+            const Toast = Swal.mixin({
+            toast: true,
+            position: 'center',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
 
+            Toast.fire({
+            icon: 'success',
+            title: '{{message}}'
+            })
+        </script>
+
+    {% elif message.tags == 'warning' %}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+        var m = "{{ message }}";
+        const Toast1 = Swal.mixin({
+        toast: true,
+        position: 'center',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast1.fire({
+        icon: 'warning',
+        title: '{{message}}'
+        })
+        </script>
+
+    {% else %}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+        var m = "{{ message }}";
+        const Toast2 = Swal.mixin({
+        toast: true,
+        position: 'center',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast2.fire({
+        icon: 'error',
+        title: '{{message}}'
+        })
+        </script>
+        
+    {% endif %}
+  {% endfor %}
 
   </body>
 </html>

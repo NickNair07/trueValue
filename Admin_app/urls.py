@@ -2,7 +2,17 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.main_page, name='mainpage'),
-    path('addcar', views.add_car, name='add_car'),
-    path('save_car', views.save_car, name='save_car'),
+    path('main_page/', views.main_page, name='main_page'),
+    path('add-category/', views.add_category, name='add_category'),
+    path('display-category/', views.display_category, name='display_category'),
+    path('edit-category/<int:id>/', views.edit_category, name='edit_category'),
+    path('delete-category/<int:id>/', views.delete_category, name='delete_category'),
+
+    path('addcar/', views.add_car, name='add_car'),
+    path('display-car/', views.display_car, name='display_car'),
+    path('edit-car/<int:id>/', views.edit_car, name='edit_car'),
+    path('delete-car/<int:id>/', views.delete_car, name='delete_car'),
+
+    path('', views.admin_login, name='admin_login'),
+    path('admin-logout/', views.admin_logout, name='admin_logout'),
 ]

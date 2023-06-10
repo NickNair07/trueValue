@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from Admin_app.models import Category_Db, Car_Db
+from django.contrib import messages
 from .models import UserDB
+
 
 # Create your views here.
 def home(request):
@@ -52,6 +54,7 @@ def user_register(request):
         confirm = request.POST.get('confirm')
         obj = UserDB(username=username, email=email, password=password, confirm_password=confirm)
         obj.save()
+        messages.success(request, "Registered Successfully")
         return redirect(user_login)
 
     return render(request, 'user_register.html')
@@ -64,8 +67,17 @@ def user_login(request):
         if UserDB.objects.filter(username=username, password=password).exists():
             request.session['username'] = username
             request.session['password'] = password
+            messages.success(request, "Logged In Successfully")
             return redirect(home)
         else:
+            messages.error(request, "Login Failed!")
             return redirect(user_login)
 
     return render(request, 'user_login.html')
+
+
+def user_logout(request):
+    del request.session['username']
+    del request.session['password']
+    messages.warning(request, "Logged Out Successfully")
+    return redirect(user_login)

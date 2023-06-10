@@ -1,0 +1,41 @@
+{% extends 'mainpage.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div style="margin:35px 0 0 30px;">
+        <a href="{% url 'display_category' %}"><button type="button" class="btn rounded-pill btn-primary">Display Category</button></a>
+    </div>
+    <div style="margin:30px;" class="col-xl">
+
+        <div class="card mb-4">
+
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">CATEGORY</h5>
+              <small class="text-muted float-end">Default label</small>
+            </div>
+
+            <div class="card-body">
+              <form method="post" action="{% url 'add_category' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                <div class="mb-3">
+                  <label class="form-label" for="basic-default-fullname">Category Name</label>
+                  <input type="text" class="form-control" id="basic-default-fullname" placeholder="category name" name="category_name">
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Default file input example</label>
+                    <input class="form-control" type="file" id="formFile" name="category_image">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

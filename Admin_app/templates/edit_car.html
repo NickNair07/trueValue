@@ -1,0 +1,145 @@
+{% extends 'mainpage.html' %}
+{% block content %}
+
+
+    <div style="margin:30px;" class="col-xl">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">EDIT CARS</h5>
+              <small class="text-muted float-end">Default label</small>
+            </div>
+
+            <div class="card-body">
+
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div style="width: 100%; padding:0;margin-bottom: 20px;" class="col-md-9 col-sm-9 col-xs-12">
+                        <label class="form-label" for="basic-default-fullname">Category</label>
+                        <select class="form-control" name="c_name">
+                            <option>Select Category</option>
+                            {% for i in category %}
+                            <option>{{i.category_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-default-fullname">Car Name</label>
+                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="car name" name="carname" value="{{cars.car_name}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Car Brand</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="car brand" name="carbrand" value="{{cars.car_brand}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label for="formFile" class="form-label">Car Photo</label>
+                        <input class="form-control" type="file" id="formFile" name="image" onchange="viewImage(event)">
+                      </div>
+                      <div>
+                        <img src="{{cars.car_photo.url}}" alt="" width="200px" height="150px" id="imgView">
+                      </div>
+
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">State</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="state" name="state" value="{{cars.state}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">City</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="city" name="city" value="{{cars.city}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Color</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="color" name="color" value="{{cars.color}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Car Model</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="model" name="model" value="{{cars.model}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Year</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="year" name="year" value="{{cars.year}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Condition</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="condition" name="condition" value="{{cars.condition}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Price</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="price" name="price" value="{{cars.price}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-message">Description</label>
+                        <textarea id="basic-default-message" class="form-control" placeholder="" name="description">{{cars.description}}</textarea>
+                      </div>
+
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Body Style</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="body style" name="bodystyle" value="{{cars.body_style}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Engine</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="engine" name="engine" value="{{cars.engine}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Transmission</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="transmission" name="transmission" value="{{cars.transmission}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Kilometers</label>
+                        <input type="number" min="0" class="form-control" id="basic-default-company" placeholder="kilometers" name="kilometers" value="{{cars.kilometers}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Mileage</label>
+                        <input type="number" min="0" class="form-control" id="basic-default-company" placeholder="milage" name="milage" value="{{cars.milage}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">Fuel Type</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="fuel" name="fuel" value="{{cars.fuel_type}}">
+                      </div>
+        
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-default-company">No of Owners</label>
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="no of owners" name="owners" value="{{cars.no_of_owners}}">
+                      </div>
+        
+        
+                      <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" value="{{cars.is_featured}}">
+                        <label class="form-check-label" for="defaultCheck1"> Is Featured </label>
+                      </div>
+        
+                      <div class="mb-3 row mt-3">
+                        <div class="col-md-10">
+                          <input class="form-control" type="datetime-local" value="{{cars.created_date}}" id="html5-datetime-local-input">
+                        </div>
+                      </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function viewImage(event){
+            document.getElementById('imgView').src= URL.createObjectURL(event.target.files[0])
+        }
+    </script>
+
+</body>
+</html>
+{% endblock %}
