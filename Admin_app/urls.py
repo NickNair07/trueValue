@@ -15,4 +15,14 @@ urlpatterns = [
 
     path('', views.admin_login, name='admin_login'),
     path('admin-logout/', views.admin_logout, name='admin_logout'),
+
+    path('contact/', views.contact, name='contact'),
+    path('delete-contact/<int:id>/', views.delete_contact, name='delete_contact'),
+
+    path('display-enquiry/', views.display_enquiry, name='display_enquiry'),
+    path('delete-enquiry/<int:id>/', views.delete_enquiry, name='delete_enquiry'),
+
+    path('display-testdrive/', views.display_testdrive, name='display_testdrive'),
+    path('delete-testdrive/<int:id>/', views.delete_testdrive, name='delete_testdrive'),
+
 ]

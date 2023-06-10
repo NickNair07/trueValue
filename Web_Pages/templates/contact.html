@@ -25,99 +25,41 @@
                 <h2>Don't Hesitate To Contact Us</h2>
             </div>
             <div class="row">
-                <div class="col-xl-4 col-lg-5 col-md-12">
-                    <div class="contact-item-wrap">
-                        <div class="contact-item">
-                            <span class="contact-icon">
-                                <ion-icon name="location"></ion-icon>
-                            </span>
-                            <div class="contact-info">
-                                <h3>Our Location</h3>
-                                <p>CA 560 bush st & 20th ave, apt 5
-                                    san francisco,230909, canada
-                                </p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">
-                                <ion-icon name="mail"></ion-icon>
-                            </span>
-                            <div class="contact-info">
-                                <h3>Send An Email</h3>
-                                <a href="https://templates.hibotheme.com/cdn-cgi/l/email-protection#4c24292020230c2123382336622f2321"><span class="__cf_email__" data-cfemail="dfb7bab3b3b09fb2b0abb0a5f1bcb0b2">[email&#160;protected]</span></a>
-                                <a href="https://templates.hibotheme.com/cdn-cgi/l/email-protection#ee9d9b9e9e819c9aae83819a8194c08d8183"><span class="__cf_email__" data-cfemail="b3c0c6c3c3dcc1c7f3dedcc7dcc99dd0dcde">[email&#160;protected]</span></a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">
-                                <ion-icon name="call"></ion-icon>
-                            </span>
-                            <div class="contact-info">
-                                <h3>Phone Number</h3>
-                                <a href="tel:88098787868">+44 587 154765</a>
-                                <a href="tel:88098787869">+55 576 234532</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-xl-8 col-lg-7 col-12">
-                    <div class="contact-form">
-                        <form class="form-wrap" id="contactForm">
+                    <div class="contact-form" style="position: relative; left: 230px;">
+                        <form class="form-wrap" id="my-contact-form" method="POST" action="{% url 'contact' %}">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="name" placeholder="Name*" id="name"
-                                            required data-error="Please enter your name">
-                                        <div class="help-block with-errors"></div>
+                                        <input type="text" name="name" placeholder="Name*" id="name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" required
-                                            placeholder="Email*" data-error="Please enter your email">
-                                        <div class="help-block with-errors"></div>
+                                        <input type="email" placeholder="Email*" name="email" id="" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="number" name="phone_number" id="phone_number" required
-                                            placeholder="Phone Number*" data-error="Please enter your email">
-                                        <div class="help-block with-errors"></div>
+                                        <input type="number" placeholder="Mobile*" name="phone_number" id="phone_number" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="msg_subject" placeholder="Subject*" id="msg_subject" required data-error="Please enter your subject">
-                                        <div class="help-block with-errors"></div>
+                                        <input type="text" name="msg_subject" placeholder="Subject*" id="msg_subject" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group v1">
-                                        <textarea name="message" id="message" placeholder="Your Messages.." cols="30" rows="10" required data-error="Please enter your message"></textarea>
-                                        <div class="help-block with-errors"></div>
+                                        <textarea style="padding: 20px;" name="message" id="message" placeholder="Your Messages.." cols="30" rows="8" required></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-check checkbox">
-                                        <input
-                                            name="gridCheck"
-                                            value="I agree to the terms and privacy policy."
-                                            class="form-check-input"
-                                            type="checkbox"
-                                            id="gridCheck"
-                                            required
-                                        >
-                                        <label class="form-check-label" for="gridCheck">
-                                            I agree to the <a class="link style2" href="terms-of-service.html">terms &amp; conditions</a> and <a class="link style2" href="privacy-policy.html">privacy policy</a>
-                                        </label>
-                                        <div class="help-block with-errors gridCheck-error"></div>
-                                    </div>
+                                    <button type="submit" class="btn btn-danger">Submit</button>
                                 </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn-two">Send Message</button>
-                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                    <div class="clearfix"></div>
-                                </div>
+                                
                             </div>
                         </form>
                     </div>
@@ -125,6 +67,26 @@
             </div>
         </div>
     </section>
+    <style>
+        input {
+            background-color: rgb(247, 247, 247);
+            border-style: none;
+            border-radius: 5px;
+        }
+        .col-md-6 {
+            padding: 10px;
+        }
+        .col-md-12 {
+            padding: 10px;
+
+        }
+        textarea {
+            background-color: rgb(247, 247, 247);
+            border-style: none;
+            border-radius: 5px;
+        }
+    </style>
+ 
     <!-- Contact Us section End -->
 
 {% endblock content %}

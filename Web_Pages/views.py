@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from Admin_app.models import Category_Db, Car_Db
+from .models import *
 from django.contrib import messages
 from .models import UserDB
 
@@ -43,6 +44,16 @@ def services(request):
 
 
 def contact(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        mobile = request.POST.get('phone_number')
+        subject = request.POST.get('msg_subject')
+        message = request.POST.get('message')
+        contact = ContactDB(name=name, email=email, mobile=mobile, subject=subject, message=message)
+        contact.save()
+        return redirect('contact')
+    
     return render(request, 'contact.html')
 
 
@@ -81,3 +92,26 @@ def user_logout(request):
     del request.session['password']
     messages.warning(request, "Logged Out Successfully")
     return redirect(user_login)
+    
+
+def enquiry(request):
+    if request.method == "POST":
+        name = request.POST.get("enq_name")
+        email = request.POST.get("enq_email")
+        message = request.POST.get("enq_message")
+        obj = EnquiryDB(name=name, email=email, message=message)
+        obj.save()
+        return redirect('car_detail', id=id)
+
+
+def testdrive(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        mobile = request.POST.get("mobile")
+        day = request.POST.get("day")
+        time = request.POST.get("time")
+        obj = TestDriveDB(name=name, email=email, mobile=mobile, preferred_day=day,
+                           preferred_time=time)
+        obj.save()
+        return redirect('car_detail', id=obj.id)

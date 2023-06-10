@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Car_Db, Category_Db
+from Web_Pages.models import *
 from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth import authenticate, login
@@ -177,3 +178,42 @@ def admin_logout(request):
     del request.session['password']
     messages.success(request, "Logged Out Successfully")
     return redirect(admin_login)
+
+
+def contact(request):
+    data = ContactDB.objects.all()
+    context = {"data": data}
+    return render(request, 'display_contact.html', context)
+
+
+def delete_contact(request, id):
+    data = ContactDB.objects.filter(id=id)
+    data.delete()
+    messages.error(request, "Contact Request Deleted!")
+    return redirect(contact)
+
+
+def display_enquiry(request):
+    enq_data = EnquiryDB.objects.all()
+    context = {"enq_data": enq_data}
+    return render(request, 'display_enquiry.html', context)
+
+
+def delete_enquiry(request, id):
+    enq_data  = EnquiryDB.objects.filter(id=id)
+    enq_data.delete()
+    messages.error(request, "Enquiry Request Deleted!")
+    return redirect(display_enquiry)
+
+
+def display_testdrive(request):
+    test_data = TestDriveDB.objects.all()
+    context = {"test_data": test_data}
+    return render(request, 'display_testdrive.html', context)
+
+
+def delete_testdrive(request, id):
+    test_data  = TestDriveDB.objects.filter(id=id)
+    test_data.delete()
+    messages.error(request, "Test Drive Request Deleted!")
+    return redirect(display_testdrive)
