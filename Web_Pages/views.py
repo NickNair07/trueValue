@@ -23,6 +23,7 @@ def cars(request, car_name):
     }
     return render(request, 'cars.html', context)
 
+
 def all_cars(request):
     car = Car_Db.objects.all()
     context = {
@@ -30,10 +31,12 @@ def all_cars(request):
     }
     return render(request, 'cars.html', context)
 
+
 def car_detail(request, id):
     single_car = Car_Db.objects.get(id=id)
     context = {"single_car": single_car}
     return render(request, 'car_detail.html', context)
+
 
 def about(request):
     return render(request, 'about.html')
@@ -101,7 +104,8 @@ def enquiry(request):
         message = request.POST.get("enq_message")
         obj = EnquiryDB(name=name, email=email, message=message)
         obj.save()
-        return redirect('car_detail', id=id)
+        messages.success(request, "Our Sales Executive will contact you shortly..")
+        return redirect('car_detail')
 
 
 def testdrive(request):
@@ -114,4 +118,5 @@ def testdrive(request):
         obj = TestDriveDB(name=name, email=email, mobile=mobile, preferred_day=day,
                            preferred_time=time)
         obj.save()
-        return redirect('car_detail', id=obj.id)
+        messages.success(request, "Successfully Booked Test Drive")
+        return redirect('car_detail')

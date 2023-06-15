@@ -16,7 +16,7 @@ urlpatterns = [
     path('', views.admin_login, name='admin_login'),
     path('admin-logout/', views.admin_logout, name='admin_logout'),
 
-    path('contact/', views.contact, name='contact'),
+    path('display-contact/', views.display_contact, name='display_contact'),
     path('delete-contact/<int:id>/', views.delete_contact, name='delete_contact'),
 
     path('display-enquiry/', views.display_enquiry, name='display_enquiry'),

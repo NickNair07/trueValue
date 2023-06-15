@@ -5,8 +5,7 @@
     <div class="col-xl mx-4 mt-4">
         <div class="card mb-4">
           <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Add Car</h5>
-            <small class="text-muted float-end">Default label</small>
+            <h5 class="mb-0">Add Car <span style="padding-left: 950px;"><a href="{% url 'display_car' %}"><button type="button" class="btn btn-outline-dark">Display Car</button></a></span></h5>
           </div>
           <div class="card-body">
             <form method="POST" action="{% url 'add_car' %}" enctype="multipart/form-data">

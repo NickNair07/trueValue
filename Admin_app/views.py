@@ -180,7 +180,7 @@ def admin_logout(request):
     return redirect(admin_login)
 
 
-def contact(request):
+def display_contact(request):
     data = ContactDB.objects.all()
     context = {"data": data}
     return render(request, 'display_contact.html', context)
@@ -190,7 +190,7 @@ def delete_contact(request, id):
     data = ContactDB.objects.filter(id=id)
     data.delete()
     messages.error(request, "Contact Request Deleted!")
-    return redirect(contact)
+    return redirect(display_contact)
 
 
 def display_enquiry(request):

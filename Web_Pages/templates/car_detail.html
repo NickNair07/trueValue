@@ -69,7 +69,7 @@
             <!-- menu logo -->
             <ul style="position: relative; right: 60px; bottom: 10px;" class="menu-logo">
                 <li>
-                    <a href="index.html"><img style="width: 80px; height:50px;" id="logo_img" src="{% static 'assets/img/favicon.webp' %}" alt="logo"> </a>
+                    <a href="{% url 'home' %}"><img style="width: 80px; height:50px;" id="logo_img" src="{% static 'assets/img/favicon.webp' %}" alt="logo"> </a>
                 </li>
             </ul>
             <!-- menu links -->
@@ -113,7 +113,7 @@
              <ul style="position: relative; right: 500px; bottom: 150px; font-size: 20px; font-weight: 800;" class="page-breadcrumb">
                 <li><a href="{% url 'home' %}"> Home</a> /</li>
                 <li><a href="{% url 'all_cars' %}">Cars</a> /</li>
-                <li><span style="color: red;">details</span> </li>
+                <li><span style="color: red;">{{single_car.car_name}}</span> </li>
              </ul>
            </div>
          </div>
@@ -131,6 +131,11 @@ car-details  -->
   <div class="container">
     <div class="row">
      <div class="col-md-9">
+
+      {% if single_car.is_featured %}
+        <label style="font-size: 16px;position: relative;right: 500px; " class="float-end badge bg-danger trending-tag">Featured</label>
+       {% endif %}
+
        <h3>{{single_car.car_name}}</h3>
        <p>Temporibus possimus quasi beatae, You will begin to realize why, consectetur adipisicing elit. aspernatur nemo maiores.</p>
       </div>
@@ -146,7 +151,7 @@ car-details  -->
         <div class="details-nav">
             <ul>
               <li>
-                <a data-bs-toggle="modal" data-bs-target="#exampleModal2" data-whatever="@mdo" href="#" class="css_btn"><i class="fa fa-dashboard"></i>Schedule Test Drive</a>
+                <a style="color: black; border: 1px solid red;" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-whatever="@mdo" href="#" class="css_btn"><i class="fa fa-dashboard"></i>Schedule Test Drive</a>
                 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -249,7 +254,7 @@ car-details  -->
    <div class="col-md-4">
        <div class="car-details-sidebar">
           <div class="details-block details-weight">
-            <h5> {{single_car.car_name}} <span style="color: red;"> DETAILS</span></h5>
+            <h5> {{single_car.car_name}}&nbsp; |&nbsp;<span style="color: red;"> DETAILS</span></h5>
             <ul>
               <li> <span>Brand</span> <strong class="text-end">{{single_car.car_brand}}</strong></li>
               <li> <span>Model</span> <strong class="text-end">{{single_car.model}}</strong></li>
@@ -342,6 +347,79 @@ car-details -->
 <script src="{% static 'single_car/assets/../../../www.google.com/recaptcha/apib091.js?render=explicit' %}" async defer></script>
 <script type="text/javascript" src="{% static 'single_car/assets/js/forms/form-validation.js' %}"></script>
 <script type="text/javascript" src="{% static 'single_car/assets/js/forms/recaptcha.js' %}"></script>
+
+    <!-- sweet alert messages -->
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+        <!-- sweetalert js -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+            var m = "{{ message }}";
+            const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+
+            Toast.fire({
+            icon: 'success',
+            title: '{{message}}'
+            })
+        </script>
+
+    {% elif message.tags == 'warning' %}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+        var m = "{{ message }}";
+        const Toast1 = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 4000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast1.fire({
+        icon: 'warning',
+        title: '{{message}}'
+        })
+        </script>
+
+    {% else %}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+        var m = "{{ message }}";
+        const Toast2 = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast2.fire({
+        icon: 'error',
+        title: '{{message}}'
+        })
+        </script>
+        
+    {% endif %}
+  {% endfor %}
 
 </body>
 

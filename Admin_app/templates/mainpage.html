@@ -75,7 +75,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div  class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="{% url 'main_page' %}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -228,7 +228,7 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="{% url 'contact' %}" class="menu-link">
+                  <a href="{% url 'display_contact' %}" class="menu-link">
                     <div data-i18n="Under Maintenance">Contact Info</div>
                   </a>
                 </li>
@@ -548,15 +548,7 @@
                         <span class="align-middle">Settings</span>
                       </a>
                     </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                      </a>
-                    </li>
+                    
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>

@@ -206,6 +206,7 @@
                             </div>
                             <div class="product-info">
                                 <a href="listings.html" class="product-category">{{i.body_style}}</a>
+                                <label style="font-size: 16px;" class="float-end badge bg-danger trending-tag">Featured</label>
                                 <h3><a href="{% url 'car_detail' i.id %}">{{i.car_name}}</a></h3>
                                 <div class="product-price">Price: ₹ {{i.price}}</div>
                                 <ul class="product-amenity list-style">
