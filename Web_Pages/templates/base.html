@@ -132,7 +132,11 @@
                                    </form>
                                 </div>
                                 <div class="option-item">
-                                    <a href="add-listing.html" class="btn-two">Add Listing</a>
+                                    {% if request.session.username %}
+                                    <a href="{% url 'add_listing' %}" class="btn-two">Add Listing</a>
+                                    {% else %}
+                                    <a href="{% url 'user_login' %}" class="btn-two">Add Listing</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -323,7 +327,7 @@
         <script src="{% static 'assets/js/tweenmax.min.js' %}"></script>
         <script src="{% static 'assets/js/main.js' %}"></script>
 
-        <!-- sweet alert messages -->
+<!-- sweet alert messages -->
 {% for message in messages %}
     {% if message.tags == 'success' %}
         <!-- sweetalert js -->

@@ -25,7 +25,7 @@ def cars(request, car_name):
 
 
 def all_cars(request):
-    car = Car_Db.objects.all()
+    car = Car_Db.objects.filter(is_approved=True)
     context = {
         "car": car,
     }
@@ -46,6 +46,44 @@ def services(request):
     return render(request, 'services.html')
 
 
+def add_listing(request):
+    if request.method == "POST":
+        car_name = request.POST.get('carname')
+        car_category = request.POST.get('category')
+        car_brand = request.POST.get('brand')
+        state = request.POST.get('state')
+        city = request.POST.get('city')
+        color = request.POST.get('color')
+        model = request.POST.get('model')
+        year = request.POST.get('year')
+        condition = request.POST.get('condition')
+        price = request.POST.get('price')
+        description = request.POST.get('description')
+        car_photo = request.FILES['image']
+        body_style = request.POST.get('bodystyle')
+        engine = request.POST.get('engine')
+        transmission = request.POST.get('transmission')
+        kilometers = request.POST.get('kilometers')
+        milage = request.POST.get('milage')
+        fuel_type = request.POST.get('fuel')
+        no_of_owners = request.POST.get('owners')
+        is_featured = request.POST.get('featured')
+        is_approved = request.POST.get('aprooved')
+        created_date = request.POST.get('date')
+
+        car = Car_Db(car_name=car_name, car_category=car_category, car_brand=car_brand, state=state, city=city, color=color, model=model, 
+                     year=year, condition=condition, price=price, description=description, car_photo=car_photo, body_style=body_style, 
+                     engine=engine, transmission=transmission, kilometers=kilometers, milage=milage, fuel_type=fuel_type,
+                     no_of_owners=no_of_owners, is_featured=is_featured, is_approved=is_approved, created_date=created_date)
+        car.save()
+        messages.warning(request, "Successful!.. Car will be listed After Varificaton")
+        return redirect(add_listing)
+
+    category = Category_Db.objects.all()
+    context = {"category": category}
+    return render(request, 'add_listing.html', context)
+
+
 def contact(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -55,6 +93,7 @@ def contact(request):
         message = request.POST.get('message')
         contact = ContactDB(name=name, email=email, mobile=mobile, subject=subject, message=message)
         contact.save()
+        messages.success(request, "Our Sales Executive will contact you shortly..")
         return redirect('contact')
     
     return render(request, 'contact.html')
@@ -99,24 +138,29 @@ def user_logout(request):
 
 def enquiry(request):
     if request.method == "POST":
+        car_id = request.POST.get('car_id')
+        car_name = request.POST.get('car_name')
         name = request.POST.get("enq_name")
         email = request.POST.get("enq_email")
         message = request.POST.get("enq_message")
-        obj = EnquiryDB(name=name, email=email, message=message)
+        obj = EnquiryDB(car_id=car_id, car_name=car_name, name=name, email=email, message=message)
         obj.save()
         messages.success(request, "Our Sales Executive will contact you shortly..")
-        return redirect('car_detail')
+        return redirect('/car_detail/'+car_id)
 
 
 def testdrive(request):
     if request.method == "POST":
+        car_id = request.POST.get('car_id')
+        car_name = request.POST.get('carname')
         name = request.POST.get("name")
         email = request.POST.get("email")
         mobile = request.POST.get("mobile")
         day = request.POST.get("day")
         time = request.POST.get("time")
-        obj = TestDriveDB(name=name, email=email, mobile=mobile, preferred_day=day,
+        obj = TestDriveDB(car_id=car_id, car_name=car_name, name=name, email=email, mobile=mobile, preferred_day=day,
                            preferred_time=time)
         obj.save()
         messages.success(request, "Successfully Booked Test Drive")
-        return redirect('car_detail')
+        return redirect('/car_detail/'+car_id)
+    

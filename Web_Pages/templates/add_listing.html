@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  
+      <!-- Breadcrumb Start -->
+      <div class="breadcrumb-wrap br-15 bg-f">
+        <div class="container">
+            <div class="breadcrumb-title">
+                <h2>Add Listings</h2>
+                <ul class="breadcrumb-menu list-style">
+                    <li><a href="index.html">Home </a></li>
+                    <li>Add Listing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Add Listing Section Start -->
+    <div class="add-listing-wrap ptb-100">
+        <div class="container">
+            <h2>Add Listing</h2>
+            <div class="add-listing-box">
+                <form method="POST" action="{% url 'add_listing' %}" class="add-listing-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="listing_title">Car Name</label>
+                                <input type="text" placeholder="Enter Car Name" name="carname">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select name="category">
+                                    <option>Select</option>
+                                    {% for i in category %}
+                                    <option>{{i.category_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Car Brand</label>
+                                <input type="text" placeholder="Brand" name="brand">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" placeholder="State" name="state">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" placeholder="City" name="city">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Color</label>
+                                <input type="text" placeholder="Color" name="color">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Cat Model</label>
+                                <input type="text" placeholder="Model" name="model">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Year</label>
+                                <input type="text" placeholder="Year" name="year">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Condition</label>
+                                <input type="text" placeholder="Condition" name="condition">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input type="text" placeholder="Price" name="price">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Body Style</label>
+                                <input type="text" placeholder="Body Style" name="bodystyle">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Engine</label>
+                                <input type="text" placeholder="Engine" name="engine">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Transmission</label>
+                                <input type="text" placeholder="Transmission" name="transmission">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Kilometers</label>
+                                <input type="number" placeholder="Kilometers" name="kilometers">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Mileage</label>
+                                <input type="number" placeholder="Mileage" name="milage">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Fuel Type</label>
+                                <input type="text" placeholder="Fuel Types" name="fuel">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>No of Owners</label>
+                                <input type="text" placeholder="No of Owners" name="owners">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>No of Owners</label>
+                                <input type="text" placeholder="No of Owners" name="owners">
+                            </div>
+                        </div>
+
+
+                        <!-- <input type="hidden" name="featured" >
+                        <input type="hidden" name="aprooved" >
+                        <input type="hidden" name="date" value="2013-01-08"> -->
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" placeholder="Description" name="description">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group photo-upload">
+                            <div class="add-listing__input-file-box">
+                                <input class="add-listing__input-file" type="file" name="image">
+                                <div class="add-listing__input-file-wrap">
+                                    <p>Add Images</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-two">Add Listing</button> 
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--  Add Listing Section End -->
+
+{% endblock content %}

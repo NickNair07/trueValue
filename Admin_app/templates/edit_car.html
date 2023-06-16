@@ -16,8 +16,8 @@
 
                     <div style="width: 100%; padding:0;margin-bottom: 20px;" class="col-md-9 col-sm-9 col-xs-12">
                         <label class="form-label" for="basic-default-fullname">Category</label>
-                        <select class="form-control" name="c_name">
-                            <option>Select Category</option>
+                        <select class="form-control" name="category">
+                            <option>{{cars.car_category}}</option>
                             {% for i in category %}
                             <option>{{i.category_name}}</option>
                             {% endfor %}
@@ -116,15 +116,27 @@
                         <input type="text" class="form-control" id="basic-default-company" placeholder="no of owners" name="owners" value="{{cars.no_of_owners}}">
                       </div>
         
+                      <div class="mb-3">
+                        <label for="exampleFormControlSelect1" class="form-label">Is Featured</label>
+                        <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="featured">
+                          <option value="{{cars.is_featured}}">{{cars.is_featured}}</option>
+                          <option value="{{False}}">False</option>
+                          <option value="{{True}}">True</option>
+                        </select>
+                      </div>
         
-                      <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" value="{{cars.is_featured}}">
-                        <label class="form-check-label" for="defaultCheck1"> Is Featured </label>
+                      <div class="mb-3">
+                        <label for="exampleFormControlSelect1" class="form-label">Is Aprooved</label>
+                        <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="aprooved">
+                          <option value="{{cars.is_approved}}">{{cars.is_approved}}</option>
+                          <option value="{{False}}">False</option>
+                          <option value="{{True}}">True</option>
+                        </select>
                       </div>
         
                       <div class="mb-3 row mt-3">
                         <div class="col-md-10">
-                          <input class="form-control" type="datetime-local" value="{{cars.created_date}}" id="html5-datetime-local-input">
+                          <input class="form-control" type="date" name="date" value="{{cars.created_date}}">
                         </div>
                       </div>
 

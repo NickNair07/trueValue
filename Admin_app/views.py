@@ -63,6 +63,7 @@ def delete_category(request, id):
 def add_car(request):
     if request.method == "POST":
         car_name = request.POST.get('carname')
+        car_category = request.POST.get('category')
         car_brand = request.POST.get('brand')
         state = request.POST.get('state')
         city = request.POST.get('city')
@@ -80,17 +81,21 @@ def add_car(request):
         milage = request.POST.get('milage')
         fuel_type = request.POST.get('fuel')
         no_of_owners = request.POST.get('owners')
+        is_featured = request.POST.get('featured')
+        is_approved = request.POST.get('aprooved')
         created_date = request.POST.get('date')
         
-        car = Car_Db(car_name=car_name, car_brand=car_brand, state=state, city=city, color=color, model=model, 
+        car = Car_Db(car_name=car_name, car_category=car_category, car_brand=car_brand, state=state, city=city, color=color, model=model, 
                      year=year, condition=condition, price=price, description=description, car_photo=car_photo, body_style=body_style, 
                      engine=engine, transmission=transmission, kilometers=kilometers, milage=milage, fuel_type=fuel_type,
-                     no_of_owners=no_of_owners,created_date=created_date)
+                     no_of_owners=no_of_owners, is_featured=is_featured, is_approved=is_approved, created_date=created_date)
         car.save()
         messages.success(request, "Car added")
         return redirect(add_car)
     
-    return render(request, 'add_car.html')
+    category = Category_Db.objects.all()
+    context = {"category": category}
+    return render(request, 'add_car.html', context)
 
 
 def display_car(request):
@@ -110,6 +115,7 @@ def edit_car(request, id):
     }
     if request.method == "POST":
         car_name = request.POST.get('carname')
+        car_category = request.POST.get('category')
         car_brand = request.POST.get('carbrand')
         state = request.POST.get('state')
         city = request.POST.get('city')
@@ -126,6 +132,8 @@ def edit_car(request, id):
         milage = request.POST.get('milage')
         fuel_type = request.POST.get('fuel')
         no_of_owners = request.POST.get('owners')
+        is_featured = request.POST.get('featured')
+        is_approved = request.POST.get('aprooved')
         created_date = request.POST.get('date')
         try:
             car_photo = request.FILES['image']
@@ -134,10 +142,10 @@ def edit_car(request, id):
         except MultiValueDictKeyError:
             file = Car_Db.objects.get(id=id).car_photo
         
-        Car_Db.objects.filter(id=id).update(car_name=car_name, car_brand=car_brand, state=state, city=city, color=color, model=model, 
+        Car_Db.objects.filter(id=id).update(car_name=car_name, car_category=car_category, car_brand=car_brand, state=state, city=city, color=color, model=model, 
                      year=year, condition=condition, price=price, description=description, car_photo=file, body_style=body_style, 
                      engine=engine, transmission=transmission, kilometers=kilometers, milage=milage, fuel_type=fuel_type,
-                     no_of_owners=no_of_owners,created_date=created_date)
+                     no_of_owners=no_of_owners, is_featured=is_featured, is_approved=is_approved, created_date=created_date)
         messages.warning(request, "Car Updated!")
         return redirect(display_car)
 

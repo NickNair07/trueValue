@@ -246,7 +246,11 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-5 col-md-5 text-md-end">
+                        {% if request.session.username %}
                         <a href="{% url 'contact' %}" class="btn-two">Contact Us Now</a>
+                        {% else %}
+                        <a href="{% url 'user_login' %}" class="btn-two">Contact Us Now</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

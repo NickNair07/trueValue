@@ -165,6 +165,10 @@ car-details  -->
                           <form method="POST" class="gray-form reset_css" id="std_form" action="{% url 'testdrive'  %}">
                             {% csrf_token %}
                           <div class="mb-3">
+                            <label class="form-label">Car Name</label>
+                            <input style="color: red;" type="text" class="form-control" id="std_firstname" name="carname" value="{{single_car.car_name}}" readonly/>
+                          </div>
+                          <div class="mb-3">
                             <label class="form-label">Name*</label>
                             <input type="text" class="form-control" id="std_firstname" name="name" />
                           </div>
@@ -187,6 +191,8 @@ car-details  -->
                           <div class="mb-3">
                             <div id="recaptcha2"></div>
                           </div>
+                          <input type="hidden" name="car_id" value="{{single_car.id}}">
+                          <input type="hidden" name="car_name" value="{{single_car.car_name}}">
                           <div>
                             <button type="submit" class="btn btn-danger " style="width: 425px;">Schedule Now</button>
                           </div>
@@ -277,9 +283,14 @@ car-details  -->
 				        <div id="send_enquiry_notice" class="form-notice" style="display:none;"></div>
                 <input type="hidden" name="action" value="send_enquiry" />
                 <div class="mb-3">
+                   <label class="form-label">Car Name</label>
+                   <input style="color: red;" type="text" class="form-control" name="car_name" id="send_enquiry_name" value="{{single_car.car_name}}" readonly>
+                </div>
+                <div class="mb-3">
                    <label class="form-label">Name*</label>
                    <input type="text" class="form-control" placeholder="Name" name="enq_name" id="send_enquiry_name">
                 </div>
+                <input type="hidden" name="car_id" value="{{single_car.id}}">
                  <div class="mb-3">
                     <label class="form-label">Email address*</label>
                     <input type="text" class="form-control" placeholder="Email" name="enq_email" id="send_enquiry_email">
@@ -348,79 +359,26 @@ car-details -->
 <script type="text/javascript" src="{% static 'single_car/assets/js/forms/form-validation.js' %}"></script>
 <script type="text/javascript" src="{% static 'single_car/assets/js/forms/recaptcha.js' %}"></script>
 
-    <!-- sweet alert messages -->
-  {% for message in messages %}
-    {% if message.tags == 'success' %}
-        <!-- sweetalert js -->
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- sweet alert messages -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-        <script>
-            var m = "{{ message }}";
-            const Toast = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 4000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-            })
-
-            Toast.fire({
-            icon: 'success',
-            title: '{{message}}'
-            })
-        </script>
-
-    {% elif message.tags == 'warning' %}
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-        var m = "{{ message }}";
-        const Toast1 = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 4000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-        })
-
-        Toast1.fire({
-        icon: 'warning',
-        title: '{{message}}'
-        })
-        </script>
-
-    {% else %}
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-        var m = "{{ message }}";
-        const Toast2 = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-        })
-
-        Toast2.fire({
-        icon: 'error',
-        title: '{{message}}'
-        })
-        </script>
-        
+    {% if messages %}
+      {% for i in messages %}
+          {% if i.tags == 'warning' %}
+              <script>
+                    swal('{{i}}','','warning');
+              </script>
+          {% elif i.tags == 'error' %}
+              <script>
+                    swal('{{i}}','','error');
+              </script>
+          {% else%}
+              <script>
+                    swal('{{i}}','','success');
+              </script>
+          {% endif %}
+      {% endfor %}
     {% endif %}
-  {% endfor %}
-
 </body>
 
 </html>
