@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from Admin_app.models import Category_Db, Car_Db
 from .models import *
 from django.contrib import messages
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 
 
 
@@ -37,7 +37,7 @@ def home(request):
 
 def cars(request, car_name):
     car = Car_Db.objects.filter(car_category=car_name)
-    count = len(car)
+    count = car.count()
     category_search = Car_Db.objects.values_list('car_category', flat=True).distinct()
     brand_search = Car_Db.objects.values_list('car_brand', flat=True).distinct()
     year_search = Car_Db.objects.values_list('year', flat=True).distinct()
@@ -231,6 +231,14 @@ def wishlist(request, id):
 
 def search(request):
     cars = Car_Db.objects.all()
+    category_search = Car_Db.objects.values_list('car_category', flat=True).distinct()
+    brand_search = Car_Db.objects.values_list('car_brand', flat=True).distinct()
+    year_search = Car_Db.objects.values_list('year', flat=True).distinct()
+    condition_search = Car_Db.objects.values_list('condition', flat=True).distinct()
+    color_search = Car_Db.objects.values_list('color', flat=True).distinct()
+    transmission_search = Car_Db.objects.values_list('transmission', flat=True).distinct()
+    state_search = Car_Db.objects.values_list('state', flat=True).distinct()
+
     if "keyword" in request.GET:
         keyword = request.GET['keyword']
         if keyword:  # if the keyword is not blank:
@@ -274,7 +282,14 @@ def search(request):
             cars = cars.filter(state__iexact=state)
 
     context = {
-        "cars": cars
+        "cars": cars, 
+        "category_search": category_search,
+        "brand_search": brand_search,
+        "year_search": year_search,
+        "condition_search": condition_search,
+        "color_search": color_search,
+        "transmission_search": transmission_search,
+        "state_search": state_search,
     }
     return render(request, 'search.html', context)
 
