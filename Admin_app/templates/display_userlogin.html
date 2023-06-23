@@ -1,0 +1,27 @@
+{% extends 'mainpage.html' %}
+
+{% block content %}
+
+<div class="card" style="width: 500px; margin-left: 25px; margin-top: 25px;">
+    <h5 class="card-header">Responsive Table</h5>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead>
+          <tr class="text-nowrap">
+            <th>#</th>
+            <th>User Name</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Table cell</td>
+            <td>Table cell</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}

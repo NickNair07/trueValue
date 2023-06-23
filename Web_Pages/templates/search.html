@@ -7,10 +7,10 @@
 <div class="breadcrumb-wrap br-15 bg-f">
     <div class="container">
         <div class="breadcrumb-title">
-            <h2>Car Listings</h2>
+            <h2>Search Results</h2>
             <ul class="breadcrumb-menu list-style">
                 <li><a href="{% url 'home' %}">Home </a></li>
-                <li>Listings</li>
+                <li>Search</li>
             </ul>
         </div>
     </div>
@@ -25,7 +25,7 @@
                 <div class="sidebar-two">
                     <div class="sidebar-widget-one">
                         <h3 class="sidebar-widget-one-title">Find Your Dream Car</h3>
-                       <form action="{% url 'search' %}" class="filter-search">
+                        <form action="{% url 'search' %}" class="filter-search">
                             <div class="form-group">
                                 <select name="category">
                                     <option value="0">Select Category</option>
@@ -123,7 +123,7 @@
                 <div class="search-result-wrap">
                     <div class="row align-items-center">
                         <div class="col-lg-8 col-md-7">
-                            <p>Showing {{count}} Results</p>
+                            <p>Showing 1-{{count}} of {{count}} Results</p>
                         </div>
                         <div class="col-lg-4 col-md-5">
                             <select >
@@ -136,24 +136,24 @@
                 </div>
 
                 <div class="row justify-content-center">
-                {% for i in car %}
+                  {% for car in cars %}
                     <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6">
                         <div class="product-card-two">
                             <div class="product-img">
-                                <img src="{{i.car_photo.url}}" alt="Image">
+                                <img src="{{car.car_photo.url}}" alt="Image">
                                     <ul class="product-option list-style">
                                     <li><a href="wishlist.html"><i class="flaticon-heart"></i></a></li>
-                                    <li><a href="#"><i class="flaticon-compare"></i></a></li>
+                                    <li><a href=""><i class="flaticon-compare"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product-info">
-                                <a href="listings.html" class="product-category">{{i.body_style}}</a>
-                                <h3><a href="{% url 'car_detail' i.id %}">{{i.car_name}}</a></h3>
-                                <div class="product-price">Price: ₹ {{i.price}}</div>
+                                <a href="listings.html" class="product-category">{{car.car_category}}</a>
+                                <h3><a href="{% url 'car_detail' car.id %}">{{car.car_name}}</a></h3>
+                                <div class="product-price">Price: ₹ {{car.price}}</div>
                                 <ul class="product-amenity list-style">
-                                    <li>Transmission <span>{{i.transmission}}</span></li>
-                                    <li>Fuel Type <span>{{i.fuel_type}}</span></li>
-                                    <li>Mileage<span>{{i.milage}} (Km/l)</span></li>
+                                    <li>Transmission <span>{{car.transmission}}</span></li>
+                                    <li>Fuel Type <span>{{car.fuel_type}}</span></li>
+                                    <li>Mileage<span>{{car.milage}} (Km/l)</span></li>
                                 </ul>
                                 <div class="product-ratings">
                                     <ul class="list-style">
@@ -165,11 +165,11 @@
                                     </ul>
                                     <span>(4k+ Ratings)</span>
                                 </div>
-                                <a href="{% url 'car_detail' i.id %}" class="btn-one">View Details</a>
+                                <a href="{% url 'car_detail' car.id %}" class="btn-one">View Details</a>
                                 </div>
                         </div>
                     </div>
-                {% endfor %}
+                  {% endfor %}
                 </div>
                 <ul class="page-nav list-style">
                     <li><a href="listings.html"><i class="flaticon-left-arrow"></i></a></li>
@@ -183,11 +183,5 @@
     </div>
 </div>
 <!-- Listing Section End -->
-
-<style>
-    select {
-        margin-bottom: 10px;
-    }
-</style>
   
 {% endblock content %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Car_Db, Category_Db
+from .models import *
 from Web_Pages.models import *
 from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
@@ -225,3 +225,12 @@ def delete_testdrive(request, id):
     test_data.delete()
     messages.error(request, "Test Drive Request Deleted!")
     return redirect(display_testdrive)
+
+
+def user_register_details(request):
+    user = UserDB.objects.all()
+    context = {
+        "user": user,
+    }
+    return render(request, 'display_user_reg.html', context)
+

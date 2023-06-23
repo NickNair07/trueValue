@@ -264,15 +264,15 @@ car-details  -->
             <ul>
               <li> <span>Brand</span> <strong class="text-end">{{single_car.car_brand}}</strong></li>
               <li> <span>Model</span> <strong class="text-end">{{single_car.model}}</strong></li>
-              <li> <span>Registration year </span> <strong class="text-end">{{single_car.year}}</strong></li>
+              <li> <span>Engine</span> <strong class="text-end">{{single_car.engine}}</strong></li>
+              <li> <span>Transmission</span> <strong class="text-end">{{single_car.transmission}}</strong></li>
+              <li> <span>Fuel Type</span> <strong class="text-end">{{single_car.fuel_type}}</strong></li>
               <li> <span>Mileage</span> <strong class="text-end">{{single_car.milage}} Km/l</strong></li>
+              <li> <span>Total Kilometer</span> <strong class="text-end">{{single_car.kilometers}} Km</strong></li>
+              <li> <span>Registration year </span> <strong class="text-end">{{single_car.year}}</strong></li>
               <li> <span>Condition</span> <strong class="text-end">{{single_car.condition}}</strong></li>
               <li> <span>Exterior Color</span> <strong class="text-end">{{single_car.color}}</strong></li>
-              <li> <span>Interior Color</span> <strong class="text-end">Brown (Leather)</strong></li>
-              <li> <span>Transmission</span> <strong class="text-end">{{single_car.transmission}}</strong></li>
-              <li> <span>Engine</span> <strong class="text-end">{{single_car.engine}}</strong></li>
               <li> <span>No of Owners</span> <strong class="text-end">{{single_car.no_of_owners}}</strong></li>
-              <li> <span>Fuel Type</span> <strong class="text-end">{{single_car.fuel_type}}</strong></li>
             </ul>
           </div>
 
@@ -288,16 +288,16 @@ car-details  -->
                 </div>
                 <div class="mb-3">
                    <label class="form-label">Name*</label>
-                   <input type="text" class="form-control" placeholder="Name" name="enq_name" id="send_enquiry_name">
+                   <input type="text" class="form-control" placeholder="Name" name="enq_name" id="send_enquiry_name" required>
                 </div>
                 <input type="hidden" name="car_id" value="{{single_car.id}}">
                  <div class="mb-3">
                     <label class="form-label">Email address*</label>
-                    <input type="text" class="form-control" placeholder="Email" name="enq_email" id="send_enquiry_email">
+                    <input type="email" class="form-control" placeholder="Email" name="enq_email" id="send_enquiry_email" required>
                 </div>
                  <div class="mb-3">
                    <label class="form-label">Message* </label>
-                   <textarea class="form-control" rows="4" placeholder="Message" name="enq_message" id="send_enquiry_message"></textarea>
+                   <textarea class="form-control" rows="4" placeholder="Message" name="enq_message"  required></textarea>
                   </div>
                   <div class="mb-3">
                    <div id="recaptcha6"></div>

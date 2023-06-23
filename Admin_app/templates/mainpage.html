@@ -77,7 +77,8 @@
           <div  class="app-brand demo">
             <a href="{% url 'main_page' %}" class="app-brand-link">
               <span class="app-brand-logo demo">
-                <svg
+                <img src="{% static 'assets/img/favicon/favicon.webp' %}" width="50px" alt="">
+                <!-- <svg
                   width="25"
                   viewBox="0 0 25 42"
                   version="1.1"
@@ -129,9 +130,9 @@
                       </g>
                     </g>
                   </g>
-                </svg>
+                </svg> -->
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Admin</span>
+              <span style="color: red;" class="app-brand-text demo menu-text fw-bolder ms-2">Admin</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -145,8 +146,8 @@
             <!-- Dashboard -->
             <li class="menu-item active">
               <a href="{% url 'main_page' %}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <i style="color: tomato;" class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div style="color: black;" data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
 
@@ -204,21 +205,21 @@
                 <div data-i18n="Authentications">AUTHENTICATION</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                <!-- <li class="menu-item">
+                  <a href="#" class="menu-link" >
                     <div data-i18n="Basic">Login</div>
                   </a>
-                </li>
+                </li> -->
                 <li class="menu-item">
-                  <a href="auth-register-basic.html" class="menu-link" target="_blank">
-                    <div data-i18n="Basic">Register</div>
+                  <a href="{% url 'user_register_details' %}" class="menu-link">
+                    <div data-i18n="Basic">Registered Users</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                <!-- <li class="menu-item">
+                  <a href="auth-forgot-password-basic.html" class="menu-link">
                     <div data-i18n="Basic">Forgot Password</div>
                   </a>
-                </li>
+                </li> -->
               </ul>
             </li>
             <li class="menu-item">

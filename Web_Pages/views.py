@@ -2,32 +2,88 @@ from django.shortcuts import render, redirect
 from Admin_app.models import Category_Db, Car_Db
 from .models import *
 from django.contrib import messages
-from .models import UserDB
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 # Create your views here.
 def home(request):
     category = Category_Db.objects.all()
     featured = Car_Db.objects.filter(is_featured=True)
+    new_cars = Car_Db.objects.filter(condition= "New")
+
+    category_search = Car_Db.objects.values_list('car_category', flat=True).distinct()
+    brand_search = Car_Db.objects.values_list('car_brand', flat=True).distinct()
+    year_search = Car_Db.objects.values_list('year', flat=True).distinct()
+    condition_search = Car_Db.objects.values_list('condition', flat=True).distinct()
+    color_search = Car_Db.objects.values_list('color', flat=True).distinct()
+    transmission_search = Car_Db.objects.values_list('transmission', flat=True).distinct()
+    state_search = Car_Db.objects.values_list('state', flat=True).distinct()
+
     context = {
         "category": category,
-        "featured": featured
+        "featured": featured,
+        "new_cars": new_cars,
+        "category_search": category_search,
+        "brand_search": brand_search,
+        "year_search": year_search,
+        "condition_search": condition_search,
+        "color_search": color_search,
+        "transmission_search": transmission_search,
+        "state_search": state_search,
     }
     return render(request, 'home.html', context)
 
 
 def cars(request, car_name):
     car = Car_Db.objects.filter(car_category=car_name)
+    count = len(car)
+    category_search = Car_Db.objects.values_list('car_category', flat=True).distinct()
+    brand_search = Car_Db.objects.values_list('car_brand', flat=True).distinct()
+    year_search = Car_Db.objects.values_list('year', flat=True).distinct()
+    condition_search = Car_Db.objects.values_list('condition', flat=True).distinct()
+    color_search = Car_Db.objects.values_list('color', flat=True).distinct()
+    transmission_search = Car_Db.objects.values_list('transmission', flat=True).distinct()
+    state_search = Car_Db.objects.values_list('state', flat=True).distinct()
     context = {
         "car": car,
+        "count": count,
+        "category_search": category_search,
+        "brand_search": brand_search,
+        "year_search": year_search,
+        "condition_search": condition_search,
+        "color_search": color_search,
+        "transmission_search": transmission_search,
+        "state_search": state_search,
     }
     return render(request, 'cars.html', context)
 
 
 def all_cars(request):
     car = Car_Db.objects.filter(is_approved=True)
+    count = car.count()
+    paginator = Paginator(car, 3)
+    page = request.GET.get('page')
+    paged_cars = paginator.get_page(page)
+
+    category_search = Car_Db.objects.values_list('car_category', flat=True).distinct()
+    brand_search = Car_Db.objects.values_list('car_brand', flat=True).distinct()
+    year_search = Car_Db.objects.values_list('year', flat=True).distinct()
+    condition_search = Car_Db.objects.values_list('condition', flat=True).distinct()
+    color_search = Car_Db.objects.values_list('color', flat=True).distinct()
+    transmission_search = Car_Db.objects.values_list('transmission', flat=True).distinct()
+    state_search = Car_Db.objects.values_list('state', flat=True).distinct()
+
     context = {
-        "car": car,
+        "car": paged_cars,
+        "count": count,
+        "category_search": category_search,
+        "brand_search": brand_search,
+        "year_search": year_search,
+        "condition_search": condition_search,
+        "color_search": color_search,
+        "transmission_search": transmission_search,
+        "state_search": state_search,
     }
     return render(request, 'cars.html', context)
 
@@ -146,7 +202,7 @@ def enquiry(request):
         obj = EnquiryDB(car_id=car_id, car_name=car_name, name=name, email=email, message=message)
         obj.save()
         messages.success(request, "Our Sales Executive will contact you shortly..")
-        return redirect('/car_detail/'+car_id)
+        return redirect('/car-detail/'+ car_id)
 
 
 def testdrive(request):
@@ -162,5 +218,63 @@ def testdrive(request):
                            preferred_time=time)
         obj.save()
         messages.success(request, "Successfully Booked Test Drive")
-        return redirect('/car_detail/'+car_id)
+        return redirect('/car-detail/'+ car_id)
     
+
+def wishlist(request, id):
+    data = Car_Db.objects.get(id=id)
+    context = {
+        "data": data
+    }
+    return render(request, 'wishlist.html', context)
+    
+
+def search(request):
+    cars = Car_Db.objects.all()
+    if "keyword" in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:  # if the keyword is not blank:
+            cars = cars.filter(description__icontains=keyword)
+
+    # advanced search function
+
+    if "category" in request.GET:
+        car_category = request.GET['category']
+        if car_category.strip():
+            cars = cars.filter(car_category__iexact=car_category)
+
+    if 'brand' in request.GET:
+        car_brand = request.GET['brand']
+        if car_brand.strip():
+            cars = cars.filter(car_brand__iexact=car_brand)
+            
+    if 'year' in request.GET:
+        year = request.GET['year']
+        if year.strip():
+            cars = cars.filter(year__iexact=year)
+
+    if 'condition' in request.GET:
+        condition = request.GET['condition']
+        if condition.strip():
+            cars = cars.filter(condition__iexact=condition)
+
+    if 'color' in request.GET:
+        color = request.GET['color']
+        if color.strip():
+            cars = cars.filter(color__iexact=color)
+
+    if 'transmission' in request.GET:
+        transmission = request.GET['transmission']
+        if transmission.strip():
+            cars = cars.filter(transmission__iexact=transmission)
+
+    if 'state' in request.GET:
+        state = request.GET['state']
+        if state.strip():
+            cars = cars.filter(state__iexact=state)
+
+    context = {
+        "cars": cars
+    }
+    return render(request, 'search.html', context)
+

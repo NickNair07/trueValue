@@ -1,0 +1,29 @@
+{% extends 'mainpage.html' %}
+
+{% block content %}
+
+<div class="card" style="width: 600px; margin-left: 25px; margin-top: 25px;padding: 0px 20px 20px 20px;">
+    <h5 style="color: tomato;" class="card-header">Registered Users</h5>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead>
+          <tr style="text-align: center;" class="text-nowrap">
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in user %}
+                <tr style="text-align: center;">
+                    <td>{{i.username}}</td>
+                    <td>{{i.email}}</td>
+                    <td class="hidetext">{{i.password}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}
