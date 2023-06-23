@@ -17,10 +17,12 @@
 </div>
 <!-- Breadcrumb End -->
 
-<!-- Blog Details Section Start -->
+<!-- Listing Details Section Start -->
 <div class="blog-details-wrap ptb-100">
     <div class="container">
         <div class="row">
+
+        <!-- Search Section Start -->
             <div class="col-xxl-3 col-xl-4 col-lg-4 order-xl-1 order-lg-1 order-md-2 order-2">
                 <div class="sidebar-two">
                     <div class="sidebar-widget-one">
@@ -119,6 +121,9 @@
 
                 </div>
             </div>
+        <!-- Search Section End -->
+
+        <!-- Car Section Start -->
             <div class="col-xxl-9 col-xl-8 col-lg-8 order-xl-2 order-lg-1 order-md-1 order-1">
                 <div class="search-result-wrap">
                     <div class="row align-items-center">
@@ -171,14 +176,30 @@
                     </div>
                 {% endfor %}
                 </div>
-                <ul class="page-nav list-style">
-                    <li><a href="listings.html"><i class="flaticon-left-arrow"></i></a></li>
-                    <li><a class="active" href="listings.html">1</a></li>
-                    <li><a href="listings.html">2</a></li>
-                    <li><a href="listings.html">3</a></li>
-                    <li><a href="listings.html"><i class="flaticon-next"></i></a></li>
-                </ul>
+                {% if car.has_other_pages == True %}
+                    <ul class="page-nav list-style">
+                        {% if car.has_previous == True %}
+                            <li><a href="?page= {{car.previous_page_number}}"><i class="flaticon-left-arrow"></i></a></li>
+                        {% else %}
+                            <li class="disabled"><a href="listings.html"><i class="flaticon-left-arrow"></i></a></li>
+                        {% endif %}
+
+                        {% for i in car.paginator.page_range %}
+                            {% if car.number == i %}
+                                <li><a class="active" href="#">{{i}}</a></li>
+                            {% else %}
+                                <li><a href="?page= {{i}}">{{i}}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                            {% if car.has_next == True %}
+                                <li><a href="?page= {{car.next_page_number}}"><i class="flaticon-next"></i></a></li>
+                            {% else %}
+                                <li class="disabled"><a href=""><i class="flaticon-next"></i></a></li>
+                            {% endif %}
+                    </ul>
+                {% endif %}
             </div>
+        <!-- Car Section End -->
         </div>
     </div>
 </div>
@@ -188,6 +209,10 @@
     select {
         margin-bottom: 10px;
     }
+    .disabled {
+    pointer-events:none; 
+    opacity:0.6;
+    }         
 </style>
   
 {% endblock content %}

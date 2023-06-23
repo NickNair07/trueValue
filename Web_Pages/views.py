@@ -62,7 +62,7 @@ def cars(request, car_name):
 def all_cars(request):
     car = Car_Db.objects.filter(is_approved=True)
     count = car.count()
-    paginator = Paginator(car, 3)
+    paginator = Paginator(car, 6)
     page = request.GET.get('page')
     paged_cars = paginator.get_page(page)
 
