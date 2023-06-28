@@ -8,6 +8,15 @@
     <div class="container">
         <div class="breadcrumb-title">
             <h2>Car Listings</h2>
+
+            <div style="position: relative; left: 586px; bottom: 100px;" class="option-item">
+                {% if request.session.username %}
+                <a href="{% url 'compare' %}" class="btn-two compare">Compare<i class="flaticon-compare"></i></a>
+                {% else %}
+                <a href="{% url 'user_login' %}" class="btn-two compare">Compare</a>
+                {% endif %}
+            </div>
+
             <ul class="breadcrumb-menu list-style">
                 <li><a href="{% url 'home' %}">Home </a></li>
                 <li>Listings</li>
@@ -142,6 +151,7 @@
 
                 <div class="row justify-content-center">
                 {% for i in car %}
+                    {% if i.is_approved %}
                     <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6">
                         <div class="product-card-two">
                             <div class="product-img">
@@ -174,6 +184,7 @@
                                 </div>
                         </div>
                     </div>
+                    {% endif %}
                 {% endfor %}
                 </div>
                 {% if car.has_other_pages == True %}
@@ -221,6 +232,9 @@
     pointer-events:none; 
     opacity:0.6;
     }         
+    .compare {
+        width: 150px;
+    }
 </style>
   
 {% endblock content %}

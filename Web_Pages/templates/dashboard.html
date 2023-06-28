@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumb Start -->
+<div class="breadcrumb-wrap br-4 bg-f">
+    <div class="container">
+        <div class="breadcrumb-title">
+            <h2>Dashboard</h2>
+            <ul class="breadcrumb-menu list-style">
+                <li><a href="{% url 'home' %}">Home </a></li>
+                <li>{{request.session.username}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<div class="cart-wrap ptb-100">
+    <div class="container">
+        <div class="cart-table ">
+            {% if enquiry %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Trash</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product Name </th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Add To Cart</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button class="cart-action" type="button">
+                                    <i class="ri-delete-bin-5-fill"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <div class="product-img">
+                                    <img src="{% static 'assets/img/product/product-1.webp' %}" alt="Image">
+                                </div>
+                            </td>
+                            <td>
+                                <a class="cart-item" href="shop-details.html">
+                                    <span>BMW 8-serie 2 door</span>
+                                </a>
+                            </td>
+                            <td>
+                                <p class="cart-item-price">$20000.00</p>
+                            </td>
+                            <td>
+                            <a href="cart.html" class="btn-two">Add To Cart</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="cart-action" type="button">
+                                    <i class="ri-delete-bin-5-fill"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <div class="product-img">
+                                    <img src="{% static 'assets/img/product/product-2.webp' %}" alt="Image">
+                                </div>
+                            </td>
+                            <td>
+                                <a class="cart-item" href="shop-details.html">
+                                    <span>Chevrolet Camaro</span>
+                                </a>
+                            </td>
+                            <td>
+                                <p class="cart-item-price">$12000.00</p>
+                            </td>
+                            <td>
+                                <a href="cart.html" class="btn-two">Add To Cart</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="cart-action" type="button">
+                                    <i class="ri-delete-bin-5-fill"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <div class="product-img">
+                                    <img src="{% static 'assets/img/product/product-3.webp' %}" alt="Image">
+                                </div>
+                            </td>
+                            <td>
+                                <a class="cart-item" href="shop-details.html">
+                                    <span>Ferrari 2-door</span>
+                                </a>
+                            </td>
+                            <td>
+                                <p class="cart-item-price">$30000.00</p>
+                            </td>
+                            <td>
+                                <a href="cart.html" class="btn-two">Add To Cart</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="cart-action" type="button">
+                                    <i class="ri-delete-bin-5-fill"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <div class="product-img">
+                                    <img src="{% static 'assets/img/product/product-4.webp' %}" alt="Image">
+                                </div>
+                            </td>
+                            <td>
+                                <a class="cart-item" href="shop-details.html">
+                                    <span>Audi A8 4-door</span>
+                                </a>
+                            </td>
+                            <td>
+                                <p class="cart-item-price">$40000.00</p>
+                            </td>
+                            <td>
+                                <a href="cart.html" class="btn-two">Add To Cart</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                <h4>There is no enquiries</h4>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

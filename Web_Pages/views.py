@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from Admin_app.models import Category_Db, Car_Db
 from .models import *
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.core.paginator import Paginator
 
 
@@ -161,10 +161,21 @@ def user_register(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         confirm = request.POST.get('confirm')
-        obj = UserDB(username=username, email=email, password=password, confirm_password=confirm)
-        obj.save()
-        messages.success(request, "Registered Successfully")
-        return redirect(user_login)
+        if password == confirm:
+            if UserDB.objects.filter(username=username).exists():
+                messages.error(request, "Username already exists!")
+                return redirect(user_register)
+            elif UserDB.objects.filter(email=email).exists():
+                messages.error(request, "Email already registered!")
+                return redirect(user_register)
+            else:
+                obj = UserDB(username=username, email=email, password=password, confirm_password=confirm)
+                obj.save()
+                messages.success(request, "Registered Successfully")
+                return redirect(user_login)
+        else:
+            messages.error(request, "Password do not match!")
+            return redirect(user_register)
 
     return render(request, 'user_register.html')
 
@@ -191,7 +202,6 @@ def user_logout(request):
     messages.warning(request, "Logged Out Successfully")
     return redirect(user_login)
     
-
 def enquiry(request):
     if request.method == "POST":
         car_id = request.POST.get('car_id')
@@ -219,14 +229,6 @@ def testdrive(request):
         obj.save()
         messages.success(request, "Successfully Booked Test Drive")
         return redirect('/car-detail/'+ car_id)
-    
-
-def wishlist(request, id):
-    data = Car_Db.objects.get(id=id)
-    context = {
-        "data": data
-    }
-    return render(request, 'wishlist.html', context)
     
 
 def search(request):
@@ -292,4 +294,30 @@ def search(request):
         "state_search": state_search,
     }
     return render(request, 'search.html', context)
+
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+
+def compare(request):
+    cars = Car_Db.objects.filter(is_approved=True)  # Only fetch approved cars
+    context = {
+        "cars": cars
+    }
+    if request.method == "POST":
+        first_car_id = request.POST.get('car1')
+        second_car_id = request.POST.get('car2')
+
+        search_car_1 = Car_Db.objects.get(id=first_car_id)
+        search_car_2 = Car_Db.objects.get(id=second_car_id)
+        print(f"Searched 1st car's name is: {search_car_1.car_name}")
+        print(f"Searched 2nd car's name is: {search_car_2.car_name}")
+
+        context = {
+            "search_car_1": search_car_1,
+            "search_car_2": search_car_2,
+            "cars": cars,  # Pass the car list again to repopulate the dropdown
+        }
+    return render(request, 'compare.html', context)
 

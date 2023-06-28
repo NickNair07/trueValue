@@ -178,7 +178,7 @@ car-details  -->
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Phone*</label>
-                            <input type="text" class="form-control"  id="std_phone" name="mobile" required>
+                            <input type="text" class="form-control"  id="std_phone" name="mobile" pattern="[0-9]{1}[0-9]{9}" required>
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Preferred Day*</label>
@@ -229,7 +229,7 @@ car-details  -->
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Name*</label>
-                            <input type="text" class="form-control" id="std_firstname" name="enq_name" required/>
+                            <input type="text" class="form-control" id="std_firstname" name="enq_name" {% if user.is_authenticated %} value="{{request.session.username}}" {% endif %} required/>
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Email address*</label>

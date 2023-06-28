@@ -19,4 +19,6 @@ urlpatterns = [
 
     path('enquiry/', views.enquiry, name='enquiry'),
     path('testdrive/', views.testdrive, name='testdrive'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('compare/', views.compare, name='compare'),
 ]

@@ -234,3 +234,10 @@ def user_register_details(request):
     }
     return render(request, 'display_user_reg.html', context)
 
+
+def listing_request(request):
+    cars = Car_Db.objects.all()
+    context = {
+        "cars": cars
+    }
+    return render(request, 'listing_request.html', context)

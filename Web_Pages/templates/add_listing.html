@@ -35,7 +35,7 @@
                             <div class="form-group">
                                 <label>Category</label>
                                 <select name="category">
-                                    <option>Select</option>
+                                    <option hidden>Select</option>
                                     {% for i in category %}
                                     <option>{{i.category_name}}</option>
                                     {% endfor %}
@@ -45,91 +45,115 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Car Brand</label>
-                                <input type="text" placeholder="Brand" name="brand">
+                                <input type="text" placeholder="Brand" name="brand" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>State</label>
-                                <input type="text" placeholder="State" name="state">
+                                <input type="text" placeholder="State" name="state" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>City</label>
-                                <input type="text" placeholder="City" name="city">
+                                <input type="text" placeholder="City" name="city" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Color</label>
-                                <input type="text" placeholder="Color" name="color">
+                                <input type="text" placeholder="Color" name="color" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Cat Model</label>
-                                <input type="text" placeholder="Model" name="model">
+                                <input type="text" placeholder="Model" name="model" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Year</label>
-                                <input type="text" placeholder="Year" name="year">
+                                <input type="text" placeholder="Year" name="year" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Condition</label>
-                                <input type="text" placeholder="Condition" name="condition">
+                                <!-- <input type="text" placeholder="Condition" name="condition"> -->
+                                <select name="condition" id="" required>
+                                    <option value="Used">Used</option>
+                                    <option value="New">New</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Price</label>
-                                <input type="text" placeholder="Price" name="price">
+                                <input type="text" placeholder="Price" name="price" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Body Style</label>
-                                <input type="text" placeholder="Body Style" name="bodystyle">
+                                <!-- <input type="text" placeholder="Body Style" name="bodystyle"> -->
+                                <select name="bodystyle" id="" required>
+                                    <option value="Sedan" >Sedan</option>
+                                    <option value="Hatchback">Hatchback</option>
+                                    <option value="SUV">SUV</option>
+                                    <option value="Minivan">Minivan</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Engine</label>
-                                <input type="text" placeholder="Engine" name="engine">
+                                <input type="text" placeholder="Engine" name="engine" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Transmission</label>
-                                <input type="text" placeholder="Transmission" name="transmission">
+                                <!-- <input type="text" placeholder="Transmission" name="transmission"> -->
+                                <select name="transmission" id="" required>
+                                    <option value="Automatic">Automatic</option>
+                                    <option value="Manual">Manual</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Kilometers</label>
-                                <input type="number" placeholder="Kilometers" name="kilometers">
+                                <input type="number" placeholder="Kilometers" name="kilometers" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Mileage</label>
-                                <input type="number" placeholder="Mileage" name="milage">
+                                <input type="number" placeholder="Mileage" name="milage" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Fuel Type</label>
-                                <input type="text" placeholder="Fuel Types" name="fuel">
+                                <!-- <input type="text" placeholder="Fuel Types" name="fuel"> -->
+                                <select name="fuel" id="" required>
+                                    <option value="Petrol">Petrol</option>
+                                    <option value="Diesel">Diesel</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>No of Owners</label>
-                                <input type="text" placeholder="No of Owners" name="owners">
+                                <!-- <input type="text" placeholder="No of Owners" name="owners"> -->
+                                <select name="owners" id="" required>
+                                    <option hidden >Select</option>
+                                    <option value="1st Owner">1st Owner</option>
+                                    <option value="2nd Onwer">2nd Onwer</option>
+                                    <option value="3rd Onwer">3rd Onwer</option>
+                                </select>
                             </div>
                         </div>
 
@@ -141,13 +165,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Description</label>
-                                <input type="text" placeholder="Description" name="description">
+                                <input type="text" placeholder="Description" name="description" required>
                             </div>
                         </div>
                         
                         <div class="form-group photo-upload">
                             <div class="add-listing__input-file-box">
-                                <input class="add-listing__input-file" type="file" name="image">
+                                <input class="add-listing__input-file" type="file" name="image" required>
                                 <div class="add-listing__input-file-wrap">
                                     <p>Add Images</p>
                                 </div>

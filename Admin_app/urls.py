@@ -25,6 +25,8 @@ urlpatterns = [
     path('display-testdrive/', views.display_testdrive, name='display_testdrive'),
     path('delete-testdrive/<int:id>/', views.delete_testdrive, name='delete_testdrive'),
 
-    path('user_register_details/', views.user_register_details, name='user_register_details'),
+    path('user-register-details/', views.user_register_details, name='user_register_details'),
+
+    path('listing-request/', views.listing_request, name='listing_request'),
 
 ]
