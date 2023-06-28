@@ -148,7 +148,9 @@ car-details  -->
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="details-nav">
+
+<!-- Test Drive section Starts -->
+          <div class="details-nav">
             <ul>
               <li>
                 <a style="color: black; border: 1px solid red;" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-whatever="@mdo" href="#" class="css_btn"><i class="fa fa-dashboard"></i>Schedule Test Drive</a>
@@ -170,7 +172,7 @@ car-details  -->
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Name*</label>
-                            <input type="text" class="form-control" id="std_firstname" name="name" required/>
+                            <input type="text" class="form-control" id="std_firstname" name="name" value="{{request.session.username}}" required readonly/>
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Email address*</label>
@@ -203,14 +205,13 @@ car-details  -->
                 </div>
               </li>
             </ul>
-         </div>
-         <!-- my modal start -->
+          </div>
+<!-- Test Drive secton Ends -->
 
-         <!-- Button trigger modal -->
+<!-- Enquiry section start -->
         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position: relative; bottom: 92px;left: 200px;width: 200px; height: 43px; border-radius: 0;color: black;">
           Send Enquiry
         </button>
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -221,43 +222,43 @@ car-details  -->
               </div>
               <div class="modal-body">
                 <p class="sub-title">Complete this form to send enquiry of your car. Our Sales Advisor will contact you promptly to confirm your appointment. </p>
-                          <form method="POST" class="gray-form reset_css" id="std_form" action="{% url 'enquiry' %}">
-                            {% csrf_token %}
-                          <div class="mb-3">
-                            <label class="form-label">Car Name</label>
-                            <input style="color: red;" type="text" class="form-control" id="std_firstname" name="car_name" value="{{single_car.car_name}}" readonly/>
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label">Name*</label>
-                            <input type="text" class="form-control" id="std_firstname" name="enq_name" {% if user.is_authenticated %} value="{{request.session.username}}" {% endif %} required/>
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label">Email address*</label>
-                            <input type="text" class="form-control"  id="std_email" name="enq_email" required>
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label">Message*</label>
-                            <textarea name="enq_message" id="" rows="4" required></textarea>
-                          </div>
-                          <div class="mb-3">
-                            <div id="recaptcha2"></div>
-                          </div>
-                          <input type="hidden" name="car_id" value="{{single_car.id}}">
-                          <input type="hidden" name="car_name" value="{{single_car.car_name}}">
-                          <div>
-                            <button type="submit" class="btn btn-danger " style="width: 425px;">Submit</button>
-                          </div>
-                        </form>
+                <form method="POST" class="gray-form reset_css" id="std_form" action="{% url 'enquiry' %}">
+                  {% csrf_token %}
+                    <div class="mb-3">
+                      <label class="form-label">Car Name</label>
+                      <input style="color: red;" type="text" class="form-control" id="std_firstname" name="car_name" value="{{single_car.car_name}}" readonly/>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Name*</label>
+                      <input type="text" class="form-control" id="std_firstname" name="enq_name" value="{{request.session.username}}" required readonly/>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Email address*</label>
+                      <input type="text" class="form-control"  id="std_email" name="enq_email" required>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Message*</label>
+                      <textarea name="enq_message" id="" rows="4" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <div id="recaptcha2"></div>
+                    </div>
+                    <input type="hidden" name="car_id" value="{{single_car.id}}">
+                    <input type="hidden" name="car_name" value="{{single_car.car_name}}">
+                    <input type="hidden" name="user_id" value="{{user.id}}">
+                    <div>
+                      <button type="submit" class="btn btn-danger " style="width: 425px;">Submit</button>
+                    </div>
+                </form>
               </div>
-              
             </div>
           </div>
         </div>
+<!-- Enquiry section ends -->
 
-        <!-- My modal end -->
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="position: relative; bottom: 50px;">
      <div class="col-md-8">
         <div class="slider-slick">
           <div class="slider slider-for detail-big-car-gallery">

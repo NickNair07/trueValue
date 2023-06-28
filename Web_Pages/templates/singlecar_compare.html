@@ -32,8 +32,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <select name="car1" required>
-                                            <option value="">Select</option>
-                                            {% for i in cars %}
+                                            {% for i in single_car %}
                                                 <option value="{{i.id}}">{{i.car_name}}</option>
                                             {% endfor %}
                                         </select>
@@ -71,10 +70,14 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="product-card-four">
                             <div class="product-img">
-                                <img src="{{search_car_1.car_photo.url}}" >
+                                {% for i in single_car %}
+                                <img src="{{i.car_photo.url}}" >
+                                {% endfor %}
                             </div>
                             <div class="product-info">
-                                <h3>{{search_car_1.car_name}}</a></h3>
+                                {% for i in single_car %}
+                                <h3>{{i.car_name}}</a></h3>
+                                {% endfor %}
                                 <!-- <div class="product-ratings">
                                     <ul class="list-style">
                                         <li><i class="ri-star-fill"></i></li>

@@ -67,7 +67,7 @@
 
                                 {% if request.session.username %}
                                     <i class="flaticon-user-1"></i>
-                                    <a href="{% url 'dashboard' %}">{{request.session.username}}</a>
+                                    <a href="{% url 'dashboard'  %}">{{request.session.username}}</a>
                                     <a href="{% url 'user_logout' %}">Logout</a>
                                 {% else %}
                                     <i class="flaticon-user-1"></i>

@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from Admin_app.models import Category_Db, Car_Db
 from .models import *
-from django.contrib import messages, auth
+from django.contrib import messages
 from django.core.paginator import Paginator
-
 
 
 # Create your views here.
@@ -297,7 +296,11 @@ def search(request):
 
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    enq_data = EnquiryDB.objects.all()
+    test_data = TestDriveDB.objects.all()
+    context = {"enq_data": enq_data,
+               "test_data": test_data}
+    return render(request, 'dashboard.html', context)
 
 
 def compare(request):
@@ -311,8 +314,6 @@ def compare(request):
 
         search_car_1 = Car_Db.objects.get(id=first_car_id)
         search_car_2 = Car_Db.objects.get(id=second_car_id)
-        print(f"Searched 1st car's name is: {search_car_1.car_name}")
-        print(f"Searched 2nd car's name is: {search_car_2.car_name}")
 
         context = {
             "search_car_1": search_car_1,
@@ -321,3 +322,23 @@ def compare(request):
         }
     return render(request, 'compare.html', context)
 
+
+def singlecar_compare(request, id):
+    cars = Car_Db.objects.filter(is_approved=True)  # Only fetch approved cars
+    single_car = Car_Db.objects.filter(id=id)
+    context = {
+        "single_car": single_car,
+        "cars": cars
+    }
+
+    if request.method == "POST":
+        second_car_id = request.POST.get('car2')
+        search_car_2 = Car_Db.objects.get(id=second_car_id)
+        print(f"Searched 2nd car's name is: {search_car_2.car_name}")
+
+        context = {
+            "search_car_2": search_car_2,
+            "single_car": single_car,
+            "cars": cars
+        }
+    return render(request, 'singlecar_compare.html', context)

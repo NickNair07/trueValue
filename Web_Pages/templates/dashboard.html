@@ -18,116 +18,115 @@
 
 <div class="cart-wrap ptb-100">
     <div class="container">
+        <h4 style="position: relative; bottom: 40px; color: red;">Your Enquiries</h4>
         <div class="cart-table ">
-            {% if enquiry %}
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Trash</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Product Name </th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Add To Cart</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <button class="cart-action" type="button">
-                                    <i class="ri-delete-bin-5-fill"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <div class="product-img">
-                                    <img src="{% static 'assets/img/product/product-1.webp' %}" alt="Image">
-                                </div>
-                            </td>
-                            <td>
-                                <a class="cart-item" href="shop-details.html">
-                                    <span>BMW 8-serie 2 door</span>
-                                </a>
-                            </td>
-                            <td>
-                                <p class="cart-item-price">$20000.00</p>
-                            </td>
-                            <td>
-                            <a href="cart.html" class="btn-two">Add To Cart</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button class="cart-action" type="button">
-                                    <i class="ri-delete-bin-5-fill"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <div class="product-img">
-                                    <img src="{% static 'assets/img/product/product-2.webp' %}" alt="Image">
-                                </div>
-                            </td>
-                            <td>
-                                <a class="cart-item" href="shop-details.html">
-                                    <span>Chevrolet Camaro</span>
-                                </a>
-                            </td>
-                            <td>
-                                <p class="cart-item-price">$12000.00</p>
-                            </td>
-                            <td>
-                                <a href="cart.html" class="btn-two">Add To Cart</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button class="cart-action" type="button">
-                                    <i class="ri-delete-bin-5-fill"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <div class="product-img">
-                                    <img src="{% static 'assets/img/product/product-3.webp' %}" alt="Image">
-                                </div>
-                            </td>
-                            <td>
-                                <a class="cart-item" href="shop-details.html">
-                                    <span>Ferrari 2-door</span>
-                                </a>
-                            </td>
-                            <td>
-                                <p class="cart-item-price">$30000.00</p>
-                            </td>
-                            <td>
-                                <a href="cart.html" class="btn-two">Add To Cart</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button class="cart-action" type="button">
-                                    <i class="ri-delete-bin-5-fill"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <div class="product-img">
-                                    <img src="{% static 'assets/img/product/product-4.webp' %}" alt="Image">
-                                </div>
-                            </td>
-                            <td>
-                                <a class="cart-item" href="shop-details.html">
-                                    <span>Audi A8 4-door</span>
-                                </a>
-                            </td>
-                            <td>
-                                <p class="cart-item-price">$40000.00</p>
-                            </td>
-                            <td>
-                                <a href="cart.html" class="btn-two">Add To Cart</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            {% else %}
-                <h4>There is no enquiries</h4>
-            {% endif %}
+            <table class="table">
+                <thead>
+                    <tr style="text-align: center;">
+                        <!-- <th scope="col">Trash</th> -->
+                        <th scope="col">User Name</th>
+                        <th scope="col">Car Name </th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enquiry in enq_data %}
+                    {% if enquiry.name == request.session.username %}
+                    <tr style="text-align: center;">
+                        <!-- <td>
+                            <button class="cart-action" type="button">
+                                <i class="ri-delete-bin-5-fill"></i>
+                            </button>
+                        </td> -->
+                        <td style="text-align: center;">
+                            <a class="cart-item" href="shop-details.html">
+                                <span>{{enquiry.name}}</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="cart-item" href="shop-details.html">
+                                <span>{{enquiry.car_name}}</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="cart-item" href="shop-details.html">
+                                <span>{{enquiry.email}}</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="cart-item" href="shop-details.html">
+                                <span>{{enquiry.message}}</span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="cart-wrap ptb-100" style="position: relative; bottom: 50px;">
+    <div class="container">
+        <h4 style="position: relative; bottom: 40px; color: red;">Your Test Drives</h4>
+        <div class="cart-table ">
+            <table class="table">
+                <thead>
+                    <tr style="text-align: center;">
+                        <!-- <th scope="col">Trash</th> -->
+                        <th scope="col">User Name</th>
+                        <th scope="col">Car Name </th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone number</th>
+                        <th scope="col">preferred_day</th>
+                        <th scope="col">preferred_time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for test in test_data %}
+                    {% if test.name == request.session.username %}
+                    <tr style="text-align: center;">
+                        <!-- <td>
+                            <button class="cart-action" type="button">
+                                <i class="ri-delete-bin-5-fill"></i>
+                            </button>
+                        </td> -->
+                        <td style="text-align: center;">
+                            <a class="cart-item" href="shop-details.html">
+                                <span>{{test.name}}</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="cart-item" href="shop-details.html">
+                                <span>{{test.car_name}}</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="cart-item" href="shop-details.html">
+                                <span>{{test.email}}</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="cart-item" href="shop-details.html">
+                                <span>{{test.mobile}}</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="cart-item" href="shop-details.html">
+                                <span>{{test.preferred_day}}</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="cart-item" href="shop-details.html">
+                                <span>{{test.preferred_time}}</span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

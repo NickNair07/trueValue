@@ -21,4 +21,5 @@ urlpatterns = [
     path('testdrive/', views.testdrive, name='testdrive'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('compare/', views.compare, name='compare'),
+    path('singlecar-compare/<int:id>/', views.singlecar_compare, name='singlecar_compare'),
 ]
