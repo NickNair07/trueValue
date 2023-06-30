@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from Admin_app.models import Category_Db, Car_Db
 from .models import *
 from django.contrib import messages
@@ -44,6 +44,7 @@ def cars(request, car_name):
     color_search = Car_Db.objects.values_list('color', flat=True).distinct()
     transmission_search = Car_Db.objects.values_list('transmission', flat=True).distinct()
     state_search = Car_Db.objects.values_list('state', flat=True).distinct()
+
     context = {
         "car": car,
         "count": count,
@@ -246,7 +247,6 @@ def search(request):
             cars = cars.filter(description__icontains=keyword)
 
     # advanced search function
-
     if "category" in request.GET:
         car_category = request.GET['category']
         if car_category.strip():
