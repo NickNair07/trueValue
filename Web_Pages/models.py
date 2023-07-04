@@ -39,12 +39,5 @@ class TestDriveDB(models.Model):
     preferred_time = models.CharField(max_length=20, null=True, blank=True)
 
 
-class Wishlist(models.Model):
-    car_id = models.CharField(max_length=10, null=True, blank=True)
-    carname = models.CharField(max_length=100, null=True, blank=True)
-    category = models.CharField(max_length=100, null=True, blank=True)
-    car_price = models.IntegerField()
-    transmission = models.CharField(max_length=100, null=True, blank=True)
-    fuel_type = models.CharField(max_length=100, null=True, blank=True)
-    milage = models.IntegerField()
+
 

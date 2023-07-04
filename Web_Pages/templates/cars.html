@@ -10,11 +10,7 @@
             <h2>Car Listings</h2>
 
             <div style="position: relative; left: 586px; bottom: 100px;" class="option-item">
-                {% if request.session.username %}
                 <a href="{% url 'compare' %}" class="btn-two compare">Compare<i class="flaticon-compare"></i></a>
-                {% else %}
-                <a href="{% url 'user_login' %}" class="btn-two compare">Compare</a>
-                {% endif %}
             </div>
 
             <ul class="breadcrumb-menu list-style">
